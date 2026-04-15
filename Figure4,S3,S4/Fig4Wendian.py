@@ -39,8 +39,14 @@ else:
 
 
 ### MANUALLY SELECTED PARAMETERS ###
-win_m = 750.0 # window length [m]
-ovlp_m = 250.0 # overlap [m]
+win_ms = [250, 500, 500, 750, 750, 1000, 1000, 1250, 1250, 1500, 1500]  # window length [m]
+overlap_ms = [0,0,250,0,375,0,500,0,625,0,750] 250.0 # overlap [m]
+
+win_ms = [750]
+overlap_ms = [250]
+
+wgt = 8
+sato_thresh_offset = -1
 
 # Set paths and make output directory
 offset_video_path_1819 = '/home/m10921061/scratch/data/DavidSpecularityData/UTG_1819_OffsetVideo'
@@ -51,276 +57,305 @@ DDInSAR_path = '/home/m10921061/scratch/data/DavidSpecularityData/Kim_DDInSAR'
 
 dist_1617 = []
 dist_1819 = []
-win_ms = [250, 500, 500, 750, 750, 1000, 1000, 1250, 1250, 1500, 1500]
-overlap_ms = [0,0,250,0,375,0,500,0,625,0,750]
+
+  # Helper functions
+def compute_doppler_spectrum(radargram, start_x,end_x):
+    """
+    Compute doppler spectrum of radargram using hilbert transform.
+
+    Parameters
+    ----------
+    radargram : Xarray.Dataframe
+        UTIG radargram offset video
+
+    Returns
+    -------
+    doppler_spectrum : np.ndarray
+        2D array of doppler spectrum 
+    """
+    
+    # Example coordinates at the bed
+    start_y = 1100
+    end_y = 1800
+
+    x_at = radargram['x'].compute().values  # meters
+    x_at = x_at[:]
+    y_at = radargram['y'].compute().values  # meters
+    y_at = y_at[:]
+
+    x_center = np.mean(x_at[start_x:end_x])
+    y_center = np.mean(y_at[start_x:end_x])
+
+    # Get low gain band
+    dat = radargram['bxds2'].compute().astype(np.float32)
+    
+    # Hilbert along fast_time axis
+    analytic = scipy.signal.hilbert(dat, axis=1)
+    data = analytic.T
+
+    # Fast fourier transform
+    data_for_fft = data[start_y:end_y:,start_x:end_x]
+    data_fft = np.fft.fftshift(np.fft.fft(data_for_fft, axis=1), axes=1)
+
+    # Make frequency axis
+    t = radargram['time'] 
+    t_sec = (t - t[0]).astype('timedelta64[ns]').astype(np.float64) * 1e-9
+    dt_slow = np.median(np.diff(t_sec.compute()))
+    n_slow = data.shape[1]
+    freq = np.fft.fftshift(
+        np.fft.fftfreq(n_slow, d=dt_slow)
+    )
+    return freq, data_fft, start_y, end_y, x_center, y_center
+
+def calc_doppler_ridge(freq, data_fft, start_y, end_y, wgt, sato_th_off):
+    """Use a Sato filter to extract the main band of a doppler spectrum.
+
+    Parameters
+    ----------
+    freq : numpy.ndarray
+        Frequency axis values of Fourier transform
+    data_fft : numpy.ndarray
+        2D fourier transform output
+    start_y : float
+        Starting y value of Fourier transform
+    end_y : float
+        Ending y value of Fourier transform
+    wgt : float
+        Weight parameter for TVD
+    sato_th_off : float
+        Offset to add to Otsu threshold for Sato mask
+
+    Returns
+    -------
+    x : numpy.ndarray
+        x-values of filtered maximum points at each frequency
+    y : numpy.ndarray
+        y-values of filtered maximum points at each frequency
+    rad_db_sato : numpy.ndarray
+        Sato-filtered and masked spectrum
+    """
+
+    # Transform radargram to log scale
+    eps = 1e-20
+    amp = np.abs(data_fft)  
+    amp = amp / np.max(amp)
+    rad_db = 20 * np.log10(amp + eps)
+
+    # Filter for main band of spectrum and mask
+    #rad_db = scipy.ndimage.gaussian_filter(rad_db, sigma=(3,2))
+    
+    rad_db = skimage.restoration.denoise_tv_chambolle(rad_db, weight=wgt)
+    rad_db = skimage.filters.sato(rad_db, sigmas=range(10,30), black_ridges=False)
+    mask = rad_db > (skimage.filters.threshold_otsu(rad_db) + sato_th_off)
+
+    rad_db_sato = rad_db * mask
+
+    max_indices = np.argmax(rad_db_sato, axis=0)
+    x = np.linspace(freq[0], freq[-1], rad_db_sato.shape[1])
+    return x, start_y + max_indices, rad_db_sato
+
+def calc_width_and_max(x,y,threshold):
+    """
+    Find width and max of Sato-filtered doppler spectra.
+    Start with y location of middle point, assumed to be in the main parabola 
+    [valid unless severely sloping]. Work out in both directions until distance
+    between point and prior point is greater than a threshold
+
+    Parameters
+    ----------
+    x : numpy.ndarray
+        x-values of filtered maximum points at each frequency
+    y : numpy.ndarray
+        y-values of filtered maximum points at each frequency
+    threshold : float
+        Gap tolerance in algorithm [ns]
+
+    Returns
+    -------
+    x[right] : float
+        Right edge x-value
+    x[left] : float
+        Left edge x-value
+    x_at_max : float
+        x-value at maximum y
+    y_at_max : float
+        Maximum y-value
+    """
+
+    y = -y # Flip direction convention (Depth increases downward)
+    starting_index = np.argmin(np.abs(x))
+    starting_point = y[starting_index]
+
+    #print(f"Initial starting point: {starting_point} at index {starting_index}")
+    comp = -1110  # Lowest y value to consider
+    if starting_point > comp:
+        mask = np.abs(x - x[starting_index]) <= 500 # Look within 200 hz
+        valid_mask = mask & (y < comp)
+        
+        if np.any(valid_mask):
+            distances = np.abs(x[valid_mask] - x[starting_index])
+            nearest_idx_within = np.argmin(distances)
+            
+            # Map back to original indices
+            valid_indices = np.where(valid_mask)[0]
+            chosen_index = valid_indices[nearest_idx_within]
+            
+            starting_point = y[chosen_index]
+            starting_index = chosen_index
+            #print(f"Adjusted starting point: {starting_point} at index {starting_index}")
+        else:
+            return starting_index - 1, starting_index + 1, np.nan, np.nan
+
+    start_point_left = starting_point
+    start_index_left = starting_index
+
+    # Find right edge
+    threshold = 100  # ns
+    diff = 0
+    while (diff < threshold) and (starting_index < len(y)-1):
+        next_index = starting_index + 1
+        next_point = y[next_index]
+        diff = np.abs(next_point - starting_point)
+        starting_index = next_index
+        starting_point = next_point
+
+    right = (starting_index - 1)
+
+    starting_index = start_index_left
+    starting_point = start_point_left
+
+    # Find left edge
+    threshold = 100  # ns
+    diff = 0
+    while (diff < threshold) and (starting_index > 0):
+        next_index = starting_index - 1
+        next_point = y[next_index]
+        diff = np.abs(next_point - starting_point)
+        starting_index = next_index
+        starting_point = next_point
+
+    left = (starting_index + 1)
+
+    y_masked = y[left:right]
+    
+    # Return nan if no max found
+    try:
+        y_at_max = -np.max(y_masked)
+        x_at_max = x[np.argmax(y_masked) + left]
+    except:
+        y_at_max = np.nan
+        x_at_max = np.nan
+
+    return x[right],x[left], x_at_max, y_at_max
+
+def plot_doppler(freq, data_fft, start_y, end_y, ridge_params, rad_db_sato):
+    """
+    Plot doppler spectrum and Sato-filtered doppler spectrum with max and width
+    """
+
+    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(15, 5))
+    
+    # Get doppler spectrum in dB
+    eps = 1e-20
+    amp = np.abs(data_fft)  
+    amp = amp / np.max(amp)
+    rad_db = 20 * np.log10(amp + eps)
+
+    # Plot doppler spectrum
+    im1 = ax1.imshow(rad_db, aspect='auto', cmap='gray', origin='lower', extent = [freq[0], freq[-1],start_y, end_y], vmin=-50, vmax=0)
+    # Prettify ax1
+    ax1.invert_yaxis()
+    cb1 = fig.colorbar(im1, ax=ax1)
+    ax1.set_ylabel("Fast Time [ns]",fontsize=16)
+    ax1.set_xlabel("Doppler Frequency [Hz]",fontsize=16)
+    ax1.tick_params(labelsize=14)
+    cb1.ax.tick_params(labelsize=14)
+    cb1.set_label("Amplitude [dB]", fontsize=16)
+
+    # Plot Sato-filtered doppler spectrum
+    im2 = ax2.imshow(rad_db_sato,aspect='auto', cmap='gray',origin='lower',extent = [freq[0], freq[-1],start_y, end_y])
+
+    # Scatter maximum and width
+    
+    max_indices = np.argmax(rad_db_sato, axis=0)
+    x = np.linspace(freq[0], freq[-1], rad_db_sato.shape[1])
+    ax2.scatter(x, start_y + max_indices, color='red', s=10, marker='x')
+    ax2.scatter(ridge_params['x_at_max'], ridge_params['y_at_max'], color='blue', s=100, marker='o')
+    ax2.hlines(ridge_params['y_at_max'], ridge_params['left'], ridge_params['right'], colors='blue', linestyles='-', linewidth=2)
+    
+    # Prettify ax2
+    ax2.invert_yaxis()
+    cb2 = fig.colorbar(im2, ax=ax2, label="Amplitude [dB]")
+    fig.tight_layout()
+    ax2.set_ylabel("Fast Time [ns]",fontsize=16)
+    ax2.set_xlabel("Doppler Frequency [Hz]",fontsize=16)
+    ax2.tick_params(labelsize=14)
+    cb2.ax.tick_params(labelsize=14)
+    cb2.set_label("Sato [Thresholded]", fontsize=16)
+
+    fig.tight_layout()
+    return fig
+
+
+def plot_radargram_planview_width(ax, xs_lake, ys_lake, plot_dict):
+    """
+    Plot doppler width and lake outline map view
+    """
+
+    bbox = [650000,-1475000,680000,-1430000] #David_SGL2_full extent
+
+    # Remove borders
+    ax.patch.set_facecolor("none")
+    for spine in ax.spines.values():
+        spine.set_visible(False)
+    ax.set_xticks([])
+    ax.set_yticks([])
+
+    for x_center_list, y_center_list, plotting in zip(plot_dict['x_centers'], plot_dict['y_centers'], plot_dict['ridge_params_list']):
+        width = [rp['right'] - rp['left'] for rp in plotting]
+        cb = ax.scatter(x_center_list, y_center_list, c=width, cmap='viridis', s=30, zorder=4,vmin=0,vmax=25)
+
+    for x, y in zip(xs_lake, ys_lake):
+        ax.plot(x, y, color='white', linewidth=2.5, zorder=5)
+
+    # Add colorbar
+    k_cbar_anchor = (0,0)
+    cbbox = inset_axes(ax, width=3,height=1,
+                    bbox_to_anchor=k_cbar_anchor,
+                    bbox_transform=ax.transAxes, loc="center left")
+    [cbbox.spines[k].set_visible(False) for k in cbbox.spines]
+    cbbox.tick_params(
+        axis = 'both',
+        left = False,
+        top = False,
+        right = False,
+        bottom = False,
+        labelleft = False,
+        labeltop = False,
+        labelright = False,
+        labelbottom = False
+    )
+    cbbox.set_facecolor([0,0,0,0.9])
+
+    cbaxes = inset_axes(cbbox, '92%', '20%', loc = 'center')
+    cbar=fig.colorbar(cb,cax=cbaxes, orientation='horizontal',extend='max') #make colorbar
+    cbar.outline.set_edgecolor('white')
+    cbar.outline.set_linewidth(1)
+    cbar.ax.tick_params(labelsize=14, color='white', labelcolor='white')
+    cbar.set_label(r"Spatial Freq Width [m$^{-1}$]", fontsize=15, color='white')
+    cbar.ax.xaxis.set_label_position('top')
+
+    cbar.ax.minorticks_on()
+
+    ax.set_xlim(bbox[0],bbox[2])
+    ax.set_ylim(bbox[1],bbox[3])
+    #ax.set_title(f"Window = {win_m} m, Overlap = {ovlp_m} m", fontsize=16)
+
+    return fig
+
 for win_m, ovlp_m in zip(win_ms, overlap_ms):
     outdir = './output{win_m}m_win_{ovlp_m}m_ovlp'
     os.makedirs(outdir, exist_ok=True)
-
-    # Helper functions
-    def compute_doppler_spectrum(radargram, start_x,end_x):
-        """
-        Compute doppler spectrum of radargram using hilbert transform.
-
-        Parameters
-        ----------
-        radargram : Xarray.Dataframe
-            UTIG radargram offset video
-
-        Returns
-        -------
-        doppler_spectrum : np.ndarray
-            2D array of doppler spectrum 
-        """
-        
-        # Example coordinates at the bed
-        start_y = 1100
-        end_y = 1800
-
-        x_at = radargram['x'].compute().values  # meters
-        x_at = x_at[:]
-        y_at = radargram['y'].compute().values  # meters
-        y_at = y_at[:]
-
-        x_center = np.mean(x_at[start_x:end_x])
-        y_center = np.mean(y_at[start_x:end_x])
-
-        # Get low gain band
-        dat = radargram['bxds2'].compute().astype(np.float32)
-        
-        # Hilbert along fast_time axis
-        analytic = scipy.signal.hilbert(dat, axis=1)
-        data = analytic.T
-
-        # Fast fourier transform
-        data_for_fft = data[start_y:end_y:,start_x:end_x]
-        data_fft = np.fft.fftshift(np.fft.fft(data_for_fft, axis=1), axes=1)
-
-        # Make frequency axis
-        t = radargram['time'] 
-        t_sec = (t - t[0]).astype('timedelta64[ns]').astype(np.float64) * 1e-9
-        dt_slow = np.median(np.diff(t_sec.compute()))
-        n_slow = data.shape[1]
-        freq = np.fft.fftshift(
-            np.fft.fftfreq(n_slow, d=dt_slow)
-        )
-        return freq, data_fft, start_y, end_y, x_center, y_center
-
-    def calc_doppler_ridge(freq, data_fft, start_y, end_y):
-        """Use a Sato filter to extract the main band of a doppler spectrum.
-
-        Parameters
-        ----------
-        freq : numpy.ndarray
-            Frequency axis values of Fourier transform
-        data_fft : numpy.ndarray
-            2D fourier transform output
-        start_y : float
-            Starting y value of Fourier transform
-        end_y : float
-            Ending y value of Fourier transform
-
-        Returns
-        -------
-        x : numpy.ndarray
-            x-values of filtered maximum points at each frequency
-        y : numpy.ndarray
-            y-values of filtered maximum points at each frequency
-        rad_db_sato : numpy.ndarray
-            Sato-filtered and masked spectrum
-        """
-
-        # Transform radargram to log scale
-        eps = 1e-20
-        amp = np.abs(data_fft)  
-        amp = amp / np.max(amp)
-        rad_db = 20 * np.log10(amp + eps)
-
-        # Filter for main band of spectrum and mask
-        #rad_db = scipy.ndimage.gaussian_filter(rad_db, sigma=(3,2))
-        rad_db = skimage.filters.sato(rad_db, sigmas=range(10,30), black_ridges=False)
-        mask = rad_db > (skimage.filters.threshold_otsu(rad_db))
-        rad_db_sato = rad_db * mask
-
-        max_indices = np.argmax(rad_db_sato, axis=0)
-        x = np.linspace(freq[0], freq[-1], rad_db_sato.shape[1])
-        return x, start_y + max_indices, rad_db_sato
-
-    def calc_width_and_max(x,y,threshold):
-        """
-        Find width and max of Sato-filtered doppler spectra.
-        Start with y location of middle point, assumed to be in the main parabola 
-        [valid unless severely sloping]. Work out in both directions until distance
-        between point and prior point is greater than a threshold
-
-        Parameters
-        ----------
-        x : numpy.ndarray
-            x-values of filtered maximum points at each frequency
-        y : numpy.ndarray
-            y-values of filtered maximum points at each frequency
-        threshold : float
-            Gap tolerance in algorithm [ns]
-
-        Returns
-        -------
-        x[right] : float
-            Right edge x-value
-        x[left] : float
-            Left edge x-value
-        x_at_max : float
-            x-value at maximum y
-        y_at_max : float
-            Maximum y-value
-        """
-
-        y = -y # Flip direction convention (Depth increases downward)
-        starting_index = np.argmin(np.abs(x))
-        starting_point = y[starting_index]
-
-        # Find right edge
-        threshold = 100  # ns
-        diff = 0
-        while (diff < threshold) and (starting_index < len(y)-1):
-            next_index = starting_index + 1
-            next_point = y[next_index]
-            diff = np.abs(next_point - starting_point)
-            starting_index = next_index
-            starting_point = next_point
-
-        right = (starting_index - 1)
-
-        starting_index = np.argmin(np.abs(x))
-        starting_point = y[starting_index]
-
-        # Find left edge
-        threshold = 100  # ns
-        diff = 0
-        while (diff < threshold) and (starting_index > 0):
-            next_index = starting_index - 1
-            next_point = y[next_index]
-            diff = np.abs(next_point - starting_point)
-            starting_index = next_index
-            starting_point = next_point
-
-        left = (starting_index + 1)
-
-        y_masked = y[left:right]
-        
-        # Return nan if no max found
-        try:
-            y_at_max = -np.max(y_masked)
-            x_at_max = x[np.argmax(y_masked) + left]
-        except:
-            y_at_max = np.nan
-            x_at_max = np.nan
-
-        return x[right],x[left], x_at_max, y_at_max
-
-    def plot_doppler(freq, data_fft, start_y, end_y, ridge_params, rad_db_sato):
-        """
-        Plot doppler spectrum and Sato-filtered doppler spectrum with max and width
-        """
-
-        fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(15, 5))
-        
-        # Get doppler spectrum in dB
-        eps = 1e-20
-        amp = np.abs(data_fft)  
-        amp = amp / np.max(amp)
-        rad_db = 20 * np.log10(amp + eps)
-
-        # Plot doppler spectrum
-        im1 = ax1.imshow(rad_db, aspect='auto', cmap='gray', origin='lower', extent = [freq[0], freq[-1],start_y, end_y], vmin=-50, vmax=0)
-        # Prettify ax1
-        ax1.invert_yaxis()
-        cb1 = fig.colorbar(im1, ax=ax1)
-        ax1.set_ylabel("Fast Time [ns]",fontsize=16)
-        ax1.set_xlabel("Doppler Frequency [Hz]",fontsize=16)
-        ax1.tick_params(labelsize=14)
-        cb1.ax.tick_params(labelsize=14)
-        cb1.set_label("Amplitude [dB]", fontsize=16)
-
-        # Plot Sato-filtered doppler spectrum
-        im2 = ax2.imshow(rad_db_sato,aspect='auto', cmap='gray',origin='lower',extent = [freq[0], freq[-1],start_y, end_y])
-    
-        # Scatter maximum and width
-        
-        max_indices = np.argmax(rad_db_sato, axis=0)
-        x = np.linspace(freq[0], freq[-1], rad_db_sato.shape[1])
-        ax2.scatter(x, start_y + max_indices, color='red', s=10, marker='x')
-        ax2.scatter(ridge_params['x_at_max'], ridge_params['y_at_max'], color='blue', s=100, marker='o')
-        ax2.hlines(ridge_params['y_at_max'], ridge_params['left'], ridge_params['right'], colors='blue', linestyles='-', linewidth=2)
-        
-        # Prettify ax2
-        ax2.invert_yaxis()
-        cb2 = fig.colorbar(im2, ax=ax2, label="Amplitude [dB]")
-        fig.tight_layout()
-        ax2.set_ylabel("Fast Time [ns]",fontsize=16)
-        ax2.set_xlabel("Doppler Frequency [Hz]",fontsize=16)
-        ax2.tick_params(labelsize=14)
-        cb2.ax.tick_params(labelsize=14)
-        cb2.set_label("Sato [Thresholded]", fontsize=16)
-
-        fig.tight_layout()
-        return fig
-
-
-    def plot_radargram_planview_width(ax, xs_lake, ys_lake, plot_dict):
-        """
-        Plot doppler width and lake outline map view
-        """
-
-        bbox = [650000,-1475000,680000,-1430000] #David_SGL2_full extent
-
-        # Remove borders
-        ax.patch.set_facecolor("none")
-        for spine in ax.spines.values():
-            spine.set_visible(False)
-        ax.set_xticks([])
-        ax.set_yticks([])
-
-        for x_center_list, y_center_list, plotting in zip(plot_dict['x_centers'], plot_dict['y_centers'], plot_dict['ridge_params_list']):
-            width = [rp['right'] - rp['left'] for rp in plotting]
-            cb = ax.scatter(x_center_list, y_center_list, c=width, cmap='viridis', s=30, zorder=4,vmin=0,vmax=25)
-
-        for x, y in zip(xs_lake, ys_lake):
-            ax.plot(x, y, color='white', linewidth=2.5, zorder=5)
-
-        # Add colorbar
-        k_cbar_anchor = (0,0)
-        cbbox = inset_axes(ax, width=3,height=1,
-                        bbox_to_anchor=k_cbar_anchor,
-                        bbox_transform=ax.transAxes, loc="center left")
-        [cbbox.spines[k].set_visible(False) for k in cbbox.spines]
-        cbbox.tick_params(
-            axis = 'both',
-            left = False,
-            top = False,
-            right = False,
-            bottom = False,
-            labelleft = False,
-            labeltop = False,
-            labelright = False,
-            labelbottom = False
-        )
-        cbbox.set_facecolor([0,0,0,0.9])
-
-        cbaxes = inset_axes(cbbox, '92%', '20%', loc = 'center')
-        cbar=fig.colorbar(cb,cax=cbaxes, orientation='horizontal',extend='max') #make colorbar
-        cbar.outline.set_edgecolor('white')
-        cbar.outline.set_linewidth(1)
-        cbar.ax.tick_params(labelsize=14, color='white', labelcolor='white')
-        cbar.set_label(r"Spatial Freq Width [m$^{-1}$]", fontsize=15, color='white')
-        cbar.ax.xaxis.set_label_position('top')
-
-        cbar.ax.minorticks_on()
-
-        ax.set_xlim(bbox[0],bbox[2])
-        ax.set_ylim(bbox[1],bbox[3])
-        #ax.set_title(f"Window = {win_m} m, Overlap = {ovlp_m} m", fontsize=16)
-
-        return fig
 
 
     # Load KRT2 offset video netcdf files
@@ -428,7 +463,7 @@ for win_m, ovlp_m in zip(win_ms, overlap_ms):
         ys_lake.append(y)
 
     def process_cube(cube):
-        x_sato, y_sato, sato_thresholded = calc_doppler_ridge(freq, cube, start_y, end_y)
+        x_sato, y_sato, sato_thresholded = calc_doppler_ridge(freq, cube, start_y, end_y, wgt, sato_thresh_offset)
         right, left, x_at_max, y_at_max = calc_width_and_max(x_sato, y_sato, threshold=100)
         ridge_params = {'right':right, 'left':left, 'x_at_max':x_at_max, 'y_at_max':y_at_max}
         return ridge_params
@@ -1916,7 +1951,7 @@ fig, ax = plt.subplots(figsize=(8,6))
 # Combine data to get common bins
 all_data = np.concatenate([dist_1617, dist_1819])
 bins = np.linspace(all_data.min(), all_data.max(), 100)
-labels = [f'{win_m} m, {ovlp_m} m' for win_m, ovlp_m in zip(win_ms, ovlp_ms)]
+labels = [f'{win_m} m, {ovlp_m} m' for win_m, ovlp_m in zip(win_ms, overlap_ms)]
 for data, label in zip(dist_1617,labels):
     ax.boxplot(data, vert=False, patch_artist=True, boxprops=dict(facecolor='purple', color='black'), medianprops=dict(color='yellow'), positions=[0], widths=0.6)
 
