@@ -1,0 +1,5 @@
+  File "/wendianHome/home/m10921061/DavidSpecularity/Figure4,S3,S4/Fig4Wendian.py", line 209
+    return x[starting_index] - 1, x[starting_index] + 1, .nanpn, np.nan
+                                                         ^
+SyntaxError: invalid syntax
+srun: error: c041: task 0: Exited with exit code 1

@@ -1,0 +1,5 @@
+  File "/wendianHome/home/m10921061/DavidSpecularity/Figure4,S3,S4/Fig4Wendian.py", line 249
+    return np.nan, np.nan x_at_max, y_at_max
+                          ^^^^^^^^
+SyntaxError: invalid syntax
+srun: error: c041: task 0: Exited with exit code 1

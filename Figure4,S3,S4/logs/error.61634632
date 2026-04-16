@@ -1,0 +1,10 @@
+  × Failed to download `pywavelets==1.9.0`
+  ├─▶ Failed to fetch:
+  │   `https://files.pythonhosted.org/packages/0f/34/0f54dd9c288941294898877008bcb5c07012340cc9c5db9cff1bd185d449/pywavelets-1.9.0-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl`
+  ├─▶ Request failed after 3 retries
+  ├─▶ error sending request for url
+  │   (https://files.pythonhosted.org/packages/0f/34/0f54dd9c288941294898877008bcb5c07012340cc9c5db9cff1bd185d449/pywavelets-1.9.0-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl)
+  ╰─▶ operation timed out
+  help: `pywavelets` (v1.9.0) was included because `davidspecularity` (v0.1.0)
+        depends on `pywavelets`
+srun: error: c041: task 0: Exited with exit code 1

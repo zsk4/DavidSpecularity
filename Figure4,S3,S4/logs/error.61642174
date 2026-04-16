@@ -1,0 +1,8 @@
+/wendianHome/home/m10921061/DavidSpecularity/Figure4,S3,S4/Fig4Wendian.py:1491: MatplotlibDeprecationWarning: The get_cmap function was deprecated in Matplotlib 3.7 and will be removed in 3.11. Use ``matplotlib.colormaps[name]`` or ``matplotlib.colormaps.get_cmap()`` or ``pyplot.get_cmap()`` instead.
+  cmap = cm.get_cmap("inferno")
+Traceback (most recent call last):
+  File "/wendianHome/home/m10921061/DavidSpecularity/Figure4,S3,S4/Fig4Wendian.py", line 1953, in <module>
+    print(dist_1617.shape, dist_1819.shape)
+          ^^^^^^^^^^^^^^^
+AttributeError: 'list' object has no attribute 'shape'
+srun: error: c041: task 0: Exited with exit code 1

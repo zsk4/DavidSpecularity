@@ -1,0 +1,12 @@
+  × Failed to download `rich==14.3.3`
+  ├─▶ Failed to fetch:
+  │   `https://files.pythonhosted.org/packages/14/25/b208c5683343959b670dc001595f2f3737e051da617f66c31f7c4fa93abc/rich-14.3.3-py3-none-any.whl`
+  ├─▶ Request failed after 3 retries
+  ├─▶ error sending request for url
+  │   (https://files.pythonhosted.org/packages/14/25/b208c5683343959b670dc001595f2f3737e051da617f66c31f7c4fa93abc/rich-14.3.3-py3-none-any.whl)
+  ├─▶ client error (Connect)
+  ├─▶ dns error
+  ╰─▶ failed to lookup address information: Name or service not known
+  help: `rich` (v14.3.3) was included because `davidspecularity` (v0.1.0)
+        depends on `dascore` (v0.1.15) which depends on `rich`
+srun: error: c041: task 0: Exited with exit code 1

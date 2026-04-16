@@ -29,6 +29,7 @@ import matplotlib.colors as colors
 from matplotlib.lines import Line2D
 import matplotlib.cm as cm
 from concurrent.futures import ProcessPoolExecutor
+import pandas as pd
 
 ### CHECK AND EXIT IF NOT ON NODE ###
 if "SLURM_JOB_ID" not in os.environ:
@@ -40,13 +41,13 @@ else:
 
 ### MANUALLY SELECTED PARAMETERS ###
 win_ms = [250, 500, 500, 750, 750, 1000, 1000, 1250, 1250, 1500, 1500]  # window length [m]
-overlap_ms = [0,0,250,0,375,0,500,0,625,0,750] 250.0 # overlap [m]
+overlap_ms = [0,0,250,0,375,0,500,0,625,0,750]  # overlap [m]
 
 win_ms = [750]
 overlap_ms = [250]
 
 wgt = 8
-sato_thresh_offset = -1
+sato_thresh_offset = 0
 
 # Set paths and make output directory
 offset_video_path_1819 = '/home/m10921061/scratch/data/DavidSpecularityData/UTG_1819_OffsetVideo'
@@ -58,7 +59,7 @@ DDInSAR_path = '/home/m10921061/scratch/data/DavidSpecularityData/Kim_DDInSAR'
 dist_1617 = []
 dist_1819 = []
 
-  # Helper functions
+# Helper functions
 def compute_doppler_spectrum(radargram, start_x,end_x):
     """
     Compute doppler spectrum of radargram using hilbert transform.
@@ -204,7 +205,8 @@ def calc_width_and_max(x,y,threshold):
             starting_index = chosen_index
             #print(f"Adjusted starting point: {starting_point} at index {starting_index}")
         else:
-            return starting_index - 1, starting_index + 1, np.nan, np.nan
+            #return np.nan,np.nan, np.nan, np.nan
+            return x[starting_index] - 1, x[starting_index] + 1, np.nan, np.nan
 
     start_point_left = starting_point
     start_index_left = starting_index
@@ -242,11 +244,14 @@ def calc_width_and_max(x,y,threshold):
     try:
         y_at_max = -np.max(y_masked)
         x_at_max = x[np.argmax(y_masked) + left]
+        return x[right],x[left], x_at_max, y_at_max
     except:
         y_at_max = np.nan
         x_at_max = np.nan
+        #return np.nan, np.nan, x_at_max, y_at_max
+        return x[right],x[left], x_at_max, y_at_max
 
-    return x[right],x[left], x_at_max, y_at_max
+    
 
 def plot_doppler(freq, data_fft, start_y, end_y, ridge_params, rad_db_sato):
     """
@@ -354,7 +359,7 @@ def plot_radargram_planview_width(ax, xs_lake, ys_lake, plot_dict):
     return fig
 
 for win_m, ovlp_m in zip(win_ms, overlap_ms):
-    outdir = './output{win_m}m_win_{ovlp_m}m_ovlp'
+    outdir = f'./output{win_m}m_win_{ovlp_m}m_ovlp'
     os.makedirs(outdir, exist_ok=True)
 
 
@@ -681,7 +686,7 @@ for win_m, ovlp_m in zip(win_ms, overlap_ms):
 
     for radargram in offset_video_radargrams_1617[:]:
         #if 'Y' in radargram.transect_id.split('/')[-1]:
-        cb = ax.scatter(radargram['x'],radargram['y'] , c=radargram['velocity'], cmap='magma', s=30, zorder=4,vmin=90,vmax=170)
+        cb = ax.scatter(radargram['x'],radargram['y'] , c=radargram['velocity'] * MS_TO_KMHR, cmap='magma', s=30, zorder=4,vmin=90,vmax=170)
     cbaxes = inset_axes(cbbox, '92%', '20%', loc = 'center')
     cbar=fig.colorbar(cb,cax=cbaxes, orientation='horizontal') #make colorbar
     cbar.outline.set_edgecolor('white')
@@ -1005,7 +1010,7 @@ for win_m, ovlp_m in zip(win_ms, overlap_ms):
 
     cb = ax.scatter(matched_coords[:,0], matched_coords[:,1], c=ridge_diff_velocity_scaled, cmap='seismic', s=30, zorder=4,vmin=-600,vmax=600) # Dummy scatter for colorbar
     cbaxes = inset_axes(cbbox, '92%', '20%', loc = 'center')
-    cbar=fig.colorbar(cb,cax=cbaxes, orientation='horizontal', extend='both') #make colorbar
+    cbar=fig.colorbar(cb, cax=cbaxes, orientation='horizontal', extend='both') #make colorbar
     cbar.outline.set_edgecolor('white')
     cbar.outline.set_linewidth(1)
     cbar.ax.tick_params(labelsize=14, color='white', labelcolor='white')
@@ -1036,6 +1041,7 @@ for win_m, ovlp_m in zip(win_ms, overlap_ms):
 
     all_velocities_1819 = np.concatenate(plotting_dict_1819['velocities'])
     avg_velocity_1819 = np.mean(all_velocities_1819)
+    print(f'Velocity 1819: {avg_velocity_1819} km/hr')
 
     all_velocities_1617 = np.concatenate(plotting_dict['velocities'])
     avg_velocity_1617 = np.mean(all_velocities_1617)
@@ -1052,6 +1058,8 @@ for win_m, ovlp_m in zip(win_ms, overlap_ms):
         # Extend by the width of each ridge, scaled by velocity
         width_velocity_corrected.extend([abs(r['left'] - r['right']) * velocity[j] for j, r in enumerate(ridge_list)])
         #avg_velocity = np.mean(velocity)
+        print(f'Ridge list')
+        print(ridge_list)
         width.extend([abs(r['left'] - r['right'])*avg_velocity_1819 for r in ridge_list])
         line_id.extend([i]*n)
 
@@ -1060,6 +1068,7 @@ for win_m, ovlp_m in zip(win_ms, overlap_ms):
     width_velocity_corrected = np.array(width_velocity_corrected)
     line_id = np.array(line_id)
 
+    print(f'Width {width}')
     tree = cKDTree(coords)
 
     pairs = np.array(list(tree.query_pairs(r=500)))
@@ -1327,6 +1336,24 @@ for win_m, ovlp_m in zip(win_ms, overlap_ms):
     ax.legend(['Point-Velocity', 'Average Velocity'], fontsize=14, loc='upper right', frameon=False)
     fig.savefig(os.path.join(outdir, 'Crossover_difference_histogram_1617.png'), dpi=300, bbox_inches='tight')
 
+
+
+    # Save variables for plotting scripts
+    plot_dict_1617_df = pd.DataFrame(plotting_dict)
+    plot_dict_1617_df.to_csv(os.path.join(outdir, 'plotting_dict_1617.csv'), index=False)
+    plot_dict_1819_df = pd.DataFrame(plotting_dict_1819)
+    plot_dict_1819_df.to_csv(os.path.join(outdir, 'plotting_dict_1819.csv'), index=False)
+
+    velocities_1617_df = pd.DataFrame({'velocity': np.concatenate(plotting_dict['velocities'])})
+    velocities_1617_df.to_csv(os.path.join(outdir, 'velocities_1617.csv'), index=False)
+    velocities_1819_df = pd.DataFrame({'velocity': np.concatenate(plotting_dict_1819['velocities'])})
+    velocities_1819_df.to_csv(os.path.join(outdir, 'velocities_1819.csv'), index=False)
+
+    matched_coords_df = pd.DataFrame(matched_coords, columns=['x', 'y'])
+    matched_coords_df.to_csv(os.path.join(outdir, 'matched_coords.csv'), index=False)
+    ridge_diff_velocity_scaled_df = pd.DataFrame({'ridge_diff_velocity_scaled': ridge_diff_velocity_scaled})
+    ridge_diff_velocity_scaled_df.to_csv(os.path.join(outdir, 'ridge_diff_velocity_scaled.csv'), index=False)
+
     ### Figure 4 ###
     # Doppler width map with velocity scaling for 2018-2019, 2016-2017, and difference map
     # with comparison to satellite lake outlines
@@ -1347,6 +1374,7 @@ for win_m, ovlp_m in zip(win_ms, overlap_ms):
         ax.set_yticks([])
 
         # Plot scaled widths
+        scaled_width_list = []
         velocities = [rad['velocity'] for rad in rad_vel[:]]
         for x_center_list, y_center_list, plotting, velocity in zip(plot_dict['x_centers'], plot_dict['y_centers'], plot_dict['ridge_params_list'], velocities):
             width = [rp['right'] - rp['left'] for rp in plotting]
@@ -1356,6 +1384,7 @@ for win_m, ovlp_m in zip(win_ms, overlap_ms):
             mask = y_maxes < 1250
             scaled_width = np.array([sw.item() for sw in scaled_width])
             scaled_width[mask] = np.nan
+            scaled_width_list.append(scaled_width)
 
             cb = ax.scatter(x_center_list, y_center_list, c=scaled_width, cmap='viridis', s=30, zorder=4,vmin=0,vmax=900)
 
@@ -1412,7 +1441,7 @@ for win_m, ovlp_m in zip(win_ms, overlap_ms):
         ax.text(664000, -1432000, ' Ice Flow\nDirection',
             fontsize=14, color='black', ha='left', va='center',zorder=10)
 
-        return ax,scaled_width
+        return ax,scaled_width_list
 
 
     # Load evolving outlines
@@ -1572,7 +1601,7 @@ for win_m, ovlp_m in zip(win_ms, overlap_ms):
 
     cb = ax3.scatter(matched_coords[:,0], matched_coords[:,1], c=ridge_diff_velocity_scaled, cmap='seismic', s=30, zorder=4,vmin=-600,vmax=600)
     cbaxes = inset_axes(cbbox, '92%', '20%', loc = 'center')
-    cbar=fig.colorbar(cb,cax=cbaxes, orientation='horizontal') #make colorbar
+    cbar=fig.colorbar(cb,cax=cbaxes, orientation='horizontal',extend='both') #make colorbar
     cbar.outline.set_edgecolor('white')
     cbar.outline.set_linewidth(1)
     cbar.ax.tick_params(labelsize=14, color='white', labelcolor='white')
@@ -1610,7 +1639,7 @@ for win_m, ovlp_m in zip(win_ms, overlap_ms):
     # Set background gainsboro
     fig.patch.set_facecolor('gainsboro')
 
-    fig.savefig(os.path.join(outdir, 'Figure4.png'), dpi=300, bbox_inches='tight')
+    fig.savefig(os.path.join(outdir, f'Figure4_wgt{wgt}_sato{sato_thresh_offset}.png'), dpi=300, bbox_inches='tight')
 
 
     ## Figure S2 ##
@@ -1675,7 +1704,7 @@ for win_m, ovlp_m in zip(win_ms, overlap_ms):
 
     for radargram in offset_video_radargrams_1617[:]:
         #if 'Y' in radargram.transect_id.split('/')[-1]:
-        cb = ax.scatter(radargram['x'],radargram['y'] , c=radargram['velocity'], cmap='magma', s=30, zorder=4,vmin=90,vmax=170)
+        cb = ax.scatter(radargram['x'],radargram['y'] , c=radargram['velocity'] * MS_TO_KMHR, cmap='magma', s=30, zorder=4,vmin=90,vmax=170)
     cbaxes = inset_axes(cbbox, '92%', '20%', loc = 'center')
     cbar=fig.colorbar(cb,cax=cbaxes, orientation='horizontal',extend='both') #make colorbar
     cbar.outline.set_edgecolor('white')
@@ -1755,7 +1784,7 @@ for win_m, ovlp_m in zip(win_ms, overlap_ms):
 
     for radargram in offset_video_radargrams_1819[:]:
         #if 'Y' in radargram.transect_id.split('/')[-1]:
-        cb = ax2.scatter(radargram['x'],radargram['y'] , c=radargram['velocity'], cmap='magma', s=30, zorder=4,vmin=90,vmax=170)
+        cb = ax2.scatter(radargram['x'],radargram['y'] , c=radargram['velocity'] *  MS_TO_KMHR, cmap='magma', s=30, zorder=4,vmin=90,vmax=170)
     cbaxes = inset_axes(cbbox, '92%', '20%', loc = 'center')
     cbar=fig.colorbar(cb,cax=cbaxes, orientation='horizontal', extend='both') #make colorbar
     cbar.outline.set_edgecolor('white')
@@ -1781,7 +1810,21 @@ for win_m, ovlp_m in zip(win_ms, overlap_ms):
     # Set background gainsboro
     fig.patch.set_facecolor('gainsboro')
 
-    fig.savefig(os.path.join(outdir, 'FigureS2.png'), dpi=300, bbox_inches='tight')
+    fig.savefig(os.path.join(outdir, f'FigureS2_wgt{wgt}_sato{sato_thresh_offset}.png'), dpi=300, bbox_inches='tight')
+
+
+
+
+
+
+
+    # Save crossovers
+    crossovers_1617_df = pd.DataFrame({'x': x_cross, 'y': y_cross, 'ridge_diff': ridge_diff_1617, 'ridge_diff_velocity_corrected': ridge_diff_velocity_corrected_1617})
+    crossovers_1617_df.to_csv(os.path.join(outdir, 'crossovers_1617.csv'), index=False)
+    crossovers_1819_df = pd.DataFrame({'x:': x_cross_1819, 'y': y_cross_1819, 'ridge_diff': ridge_diff_1819, 'ridge_diff_velocity_corrected': ridge_diff_velocity_corrected_1819})
+    crossovers_1819_df.to_csv(os.path.join(outdir, 'crossovers_1819.csv'), index=False)
+
+
 
     ## Figure S3 ##
     def common_panel_elements_S3(ax, plot_dict, rad_vel):
@@ -1867,7 +1910,7 @@ for win_m, ovlp_m in zip(win_ms, overlap_ms):
     cbar.outline.set_edgecolor('white')
     cbar.outline.set_linewidth(1)
     cbar.ax.tick_params(labelsize=14, color='white', labelcolor='white')
-    cbar.set_label("Uncorrected - Corrected [Hz]", fontsize=15, color='white')
+    cbar.set_label("Average - Point [Hz]", fontsize=15, color='white')
     cbar.ax.xaxis.set_label_position('top')
 
     cbar.ax.minorticks_on()
@@ -1895,7 +1938,7 @@ for win_m, ovlp_m in zip(win_ms, overlap_ms):
     cbar.outline.set_edgecolor('white')
     cbar.outline.set_linewidth(1)
     cbar.ax.tick_params(labelsize=14, color='white', labelcolor='white')
-    cbar.set_label("Uncorrected - Corrected [Hz]", fontsize=15, color='white')
+    cbar.set_label("Average - Point [Hz]", fontsize=15, color='white')
     cbar.ax.xaxis.set_label_position('top')
 
     cbar.ax.minorticks_on()
@@ -1937,7 +1980,7 @@ for win_m, ovlp_m in zip(win_ms, overlap_ms):
 
     ax4.legend(['Point-Velocity', 'Average Velocity'], fontsize=14, loc='upper right', frameon=False)
 
-    fig.savefig(os.path.join(outdir, 'FigureS3.png'), dpi=300, bbox_inches='tight')
+    fig.savefig(os.path.join(outdir, f'FigureS3_wgt{wgt}_sato{sato_thresh_offset}.png'), dpi=300, bbox_inches='tight')
 
 
     # Get 1617 and 1819 distributions
@@ -1946,12 +1989,29 @@ for win_m, ovlp_m in zip(win_ms, overlap_ms):
 
 
 # Boxplot of value distributions for given window and overlap paramaters
+print(dist_1617)
+print(dist_1819)
 
-fig, ax = plt.subplots(figsize=(8,6))
-# Combine data to get common bins
-all_data = np.concatenate([dist_1617, dist_1819])
-bins = np.linspace(all_data.min(), all_data.max(), 100)
-labels = [f'{win_m} m, {ovlp_m} m' for win_m, ovlp_m in zip(win_ms, overlap_ms)]
-for data, label in zip(dist_1617,labels):
-    ax.boxplot(data, vert=False, patch_artist=True, boxprops=dict(facecolor='purple', color='black'), medianprops=dict(color='yellow'), positions=[0], widths=0.6)
+# Save distributions as csv
+dist_1617_df = pd.DataFrame(dist_1617, columns=['Doppler Width [Hz]'])
+dist_1819_df = pd.DataFrame(dist_1819, columns=['Doppler Width [Hz]'])
+dist_1617_df.to_csv(os.path.join(outdir, 'dist_1617.csv'), index=False)
+dist_1819_df.to_csv(os.path.join(outdir, 'dist_1819.csv'), index=False)
 
+for i, win_m, ovlp_m in enumerate(zip(win_ms, overlap_ms)):
+    fig, ax1, ax2 = plt.subplots(2, 1, figsize=(12,6))
+    # Combine data to get common bins
+    data_1617 = np.array(dist_1617[i].ravel)
+    data_1819 = np.array(dist_1819[i].ravel)
+    print(data_1617)
+    print(data_1819)
+    all_data = np.concatenate([data_1617, data_1819])
+    bins = np.linspace(all_data.min(), all_data.max(), 100)
+    labels = [f'{win_m} m, {ovlp_m} m' for win_m, ovlp_m in zip(win_ms, overlap_ms)]
+    ax1.boxplot(dist_1617, vert=False, patch_artist=True, boxprops=dict(facecolor='purple', color='black'), medianprops=dict(color='yellow'), positions=[0], widths=0.6)
+    ax2.boxplot(dist_1819, vert=False, patch_artist=True, boxprops=dict(facecolor='purple', color='black'), medianprops=dict(color='yellow'), positions=[0], widths=0.6)
+    ax1.set_yticks([0])
+    ax1.set_yticklabels([f'2016-2017\n{labels[0]}'], fontsize=14)
+    ax2.set_yticks([0])
+    ax2.set_yticklabels([f'2018-2019\n{labels[0]}'], fontsize=14)
+    ax1.set_xlabel('Doppler Width [Hz]', fontsize=16)
