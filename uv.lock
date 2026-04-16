@@ -563,29 +563,6 @@ wheels = [
 ]
 
 [[package]]
-name = "dascore"
-version = "0.1.15"
-source = { registry = "https://pypi.org/simple" }
-dependencies = [
-    { name = "h5py" },
-    { name = "matplotlib" },
-    { name = "numpy" },
-    { name = "packaging" },
-    { name = "pandas" },
-    { name = "pint" },
-    { name = "pooch" },
-    { name = "pydantic" },
-    { name = "rich" },
-    { name = "scipy" },
-    { name = "tables" },
-    { name = "typing-extensions" },
-]
-sdist = { url = "https://files.pythonhosted.org/packages/4c/9c/1c5b864b07eb112df5f258ce97c780083651788e5ca247338a764a9acc3f/dascore-0.1.15.tar.gz", hash = "sha256:5abbdaca2efded01e194b8eb98842e7cce564ac14cb19ad20394fa3fc629785d", size = 476792, upload-time = "2026-03-17T12:02:27.437Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/a3/1c/f161daf1f8c3fcbf54f68f91366493a71e376f92dc75219e93cda3d17909/dascore-0.1.15-py3-none-any.whl", hash = "sha256:74a38608bb2058ac0c37f494dbf5dbd13b84f8fa0f205890bdf30e5afc453a27", size = 334361, upload-time = "2026-03-17T12:02:25.917Z" },
-]
-
-[[package]]
 name = "dask"
 version = "2026.1.2"
 source = { registry = "https://pypi.org/simple" }
@@ -623,7 +600,6 @@ dependencies = [
     { name = "ccrs" },
     { name = "cmap" },
     { name = "cmasher" },
-    { name = "dascore" },
     { name = "geopandas" },
     { name = "ipykernel" },
     { name = "line-profiler" },
@@ -645,7 +621,6 @@ requires-dist = [
     { name = "ccrs", specifier = ">=1.0.0" },
     { name = "cmap", specifier = ">=0.7.2" },
     { name = "cmasher", specifier = ">=1.9.2" },
-    { name = "dascore", specifier = ">=0.1.15" },
     { name = "geopandas", specifier = ">=1.1.3" },
     { name = "ipykernel", specifier = ">=7.2.0" },
     { name = "line-profiler", specifier = ">=5.0.2" },

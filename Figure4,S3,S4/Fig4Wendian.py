@@ -40,11 +40,11 @@ else:
 
 
 ### MANUALLY SELECTED PARAMETERS ###
-win_ms = [250, 500, 500, 750, 750, 1000, 1000, 1250, 1250, 1500, 1500]  # window length [m]
-overlap_ms = [0,0,250,0,375,0,500,0,625,0,750]  # overlap [m]
+win_ms = [250, 500, 750,1000,1000, 1250, 1500]  # window length [m]
+overlap_ms = [0,250,375,250, 500,625,500]  # overlap [m]
 
-win_ms = [750]
-overlap_ms = [250]
+#win_ms = [750]
+#overlap_ms = [250]
 
 wgt = 8
 sato_thresh_offset = 0
@@ -359,6 +359,9 @@ def plot_radargram_planview_width(ax, xs_lake, ys_lake, plot_dict):
     return fig
 
 for win_m, ovlp_m in zip(win_ms, overlap_ms):
+    print("##############")
+    print(f"Processing window length {win_m} m and overlap {ovlp_m} m")
+    print("##############")
     outdir = f'./output{win_m}m_win_{ovlp_m}m_ovlp'
     os.makedirs(outdir, exist_ok=True)
 
@@ -1943,7 +1946,7 @@ for win_m, ovlp_m in zip(win_ms, overlap_ms):
 
 
 
-
+    """
     # Histograms
     # Combine data to get common bins
     all_data = np.concatenate([ridge_diff_velocity_corrected_1617, ridge_diff_1617])
@@ -2011,3 +2014,4 @@ for i, win_m, ovlp_m in enumerate(zip(win_ms, overlap_ms)):
     ax2.set_yticks([0])
     ax2.set_yticklabels([f'2018-2019\n{labels[0]}'], fontsize=14)
     ax1.set_xlabel('Doppler Width [Hz]', fontsize=16)
+"""

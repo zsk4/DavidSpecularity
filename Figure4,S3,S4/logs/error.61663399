@@ -1,0 +1,29 @@
+/wendianHome/home/m10921061/DavidSpecularity/Figure4,S3,S4/Fig4Wendian.py:1514: MatplotlibDeprecationWarning: The get_cmap function was deprecated in Matplotlib 3.7 and will be removed in 3.11. Use ``matplotlib.colormaps[name]`` or ``matplotlib.colormaps.get_cmap()`` or ``pyplot.get_cmap()`` instead.
+  cmap = cm.get_cmap("inferno")
+Traceback (most recent call last):
+  File "/wendianHome/home/m10921061/DavidSpecularity/.venv/lib/python3.12/site-packages/pandas/core/internals/construction.py", line 911, in _finalize_columns_and_data
+    columns = _validate_or_indexify_columns(contents, columns)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/wendianHome/home/m10921061/DavidSpecularity/.venv/lib/python3.12/site-packages/pandas/core/internals/construction.py", line 958, in _validate_or_indexify_columns
+    raise AssertionError(
+AssertionError: 1 columns passed, passed data had 11 columns
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/wendianHome/home/m10921061/DavidSpecularity/Figure4,S3,S4/Fig4Wendian.py", line 1992, in <module>
+    dist_1617_df = pd.DataFrame(dist_1617, columns=['Doppler Width [Hz]'])
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/wendianHome/home/m10921061/DavidSpecularity/.venv/lib/python3.12/site-packages/pandas/core/frame.py", line 837, in __init__
+    arrays, columns, index = nested_data_to_arrays(
+                             ^^^^^^^^^^^^^^^^^^^^^^
+  File "/wendianHome/home/m10921061/DavidSpecularity/.venv/lib/python3.12/site-packages/pandas/core/internals/construction.py", line 477, in nested_data_to_arrays
+    arrays, columns = to_arrays(data, columns, dtype=dtype)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/wendianHome/home/m10921061/DavidSpecularity/.venv/lib/python3.12/site-packages/pandas/core/internals/construction.py", line 812, in to_arrays
+    content, columns = _finalize_columns_and_data(arr, columns, dtype)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/wendianHome/home/m10921061/DavidSpecularity/.venv/lib/python3.12/site-packages/pandas/core/internals/construction.py", line 914, in _finalize_columns_and_data
+    raise ValueError(err) from err
+ValueError: 1 columns passed, passed data had 11 columns
+srun: error: c041: task 0: Exited with exit code 1
