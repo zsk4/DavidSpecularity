@@ -206,7 +206,7 @@ def calc_width_and_max(x,y,threshold):
             #print(f"Adjusted starting point: {starting_point} at index {starting_index}")
         else:
             #return np.nan,np.nan, np.nan, np.nan
-            return x[starting_index] - 1, x[starting_index] + 1, np.nan, np.nan
+            return -9999, -9999, np.nan, np.nan
 
     start_point_left = starting_point
     start_index_left = starting_index
@@ -249,7 +249,7 @@ def calc_width_and_max(x,y,threshold):
         y_at_max = np.nan
         x_at_max = np.nan
         #return np.nan, np.nan, x_at_max, y_at_max
-        return x[right],x[left], x_at_max, y_at_max
+        return -9999, -9999, x_at_max, y_at_max
 
     
 
@@ -1339,20 +1339,16 @@ for win_m, ovlp_m in zip(win_ms, overlap_ms):
 
 
     # Save variables for plotting scripts
-    plot_dict_1617_df = pd.DataFrame(plotting_dict)
+    plot_dict_1617_df = pd.DataFrame({'x_centers': plotting_dict['x_centers'], 'y_centers': plotting_dict['y_centers'], 'ridge_params_list': plotting_dict['ridge_params_list'], 'velocities': plotting_dict['velocities']})
     plot_dict_1617_df.to_csv(os.path.join(outdir, 'plotting_dict_1617.csv'), index=False)
-    plot_dict_1819_df = pd.DataFrame(plotting_dict_1819)
+    plot_dict_1819_df = pd.DataFrame({'x_centers': plotting_dict_1819['x_centers'], 'y_centers': plotting_dict_1819['y_centers'], 'ridge_params_list': plotting_dict_1819['ridge_params_list'], 'velocities': plotting_dict_1819['velocities']})
     plot_dict_1819_df.to_csv(os.path.join(outdir, 'plotting_dict_1819.csv'), index=False)
-
-    velocities_1617_df = pd.DataFrame({'velocity': np.concatenate(plotting_dict['velocities'])})
-    velocities_1617_df.to_csv(os.path.join(outdir, 'velocities_1617.csv'), index=False)
-    velocities_1819_df = pd.DataFrame({'velocity': np.concatenate(plotting_dict_1819['velocities'])})
-    velocities_1819_df.to_csv(os.path.join(outdir, 'velocities_1819.csv'), index=False)
 
     matched_coords_df = pd.DataFrame(matched_coords, columns=['x', 'y'])
     matched_coords_df.to_csv(os.path.join(outdir, 'matched_coords.csv'), index=False)
-    ridge_diff_velocity_scaled_df = pd.DataFrame({'ridge_diff_velocity_scaled': ridge_diff_velocity_scaled})
-    ridge_diff_velocity_scaled_df.to_csv(os.path.join(outdir, 'ridge_diff_velocity_scaled.csv'), index=False)
+    comp_df = matched_coords_df.copy()
+    comp_df['ridge_diff_velocity_scaled'] = ridge_diff_velocity_scaled
+    comp_df.to_csv(os.path.join(outdir, 'comp_diff.csv'), index=False)
 
     ### Figure 4 ###
     # Doppler width map with velocity scaling for 2018-2019, 2016-2017, and difference map
