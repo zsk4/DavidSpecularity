@@ -190,7 +190,7 @@ def calc_width_and_max(x,y,threshold):
     #print(f"Initial starting point: {starting_point} at index {starting_index}")
     comp = -1110  # Lowest y value to consider
     if starting_point > comp:
-        mask = np.abs(x - x[starting_index]) <= 500 # Look within 200 hz
+        mask = np.abs(x - x[starting_index]) <= 500 # Look within 500 hz
         valid_mask = mask & (y < comp)
         
         if np.any(valid_mask):
