@@ -40,10 +40,10 @@ else:
 
 
 ### MANUALLY SELECTED PARAMETERS ###
-win_ms = [250, 500, 750,1000,1000, 1250, 1500]  # window length [m]
-overlap_ms = [0,250,375,250, 500,625,500]  # overlap [m]
+win_ms = [250, 500, 750, 750,1000,1000, 1250, 1500]  # window length [m]
+overlap_ms = [0,250, 250, 375,250, 500,625,500]  # overlap [m]
 
-#win_ms = [750]
+#win_ms = [750]  
 #overlap_ms = [250]
 
 wgt = 8
@@ -98,14 +98,17 @@ def compute_doppler_spectrum(radargram, start_x,end_x):
     data_for_fft = data[start_y:end_y:,start_x:end_x]
     data_fft = np.fft.fftshift(np.fft.fft(data_for_fft, axis=1), axes=1)
 
+    dx = np.mean(np.diff(radargram['distance'].compute().values[start_x:end_x])) # m
+    print(f"In func dx = {dx} m")
     # Make frequency axis
     t = radargram['time'] 
     t_sec = (t - t[0]).astype('timedelta64[ns]').astype(np.float64) * 1e-9
     dt_slow = np.median(np.diff(t_sec.compute()))
     n_slow = data.shape[1]
     freq = np.fft.fftshift(
-        np.fft.fftfreq(n_slow, d=dt_slow)
+        np.fft.fftfreq(n_slow, d=dx)
     )
+    print(f"In funct freq = {freq[0]} to {freq[-1]} Hz")
     return freq, data_fft, start_y, end_y, x_center, y_center
 
 def calc_doppler_ridge(freq, data_fft, start_y, end_y, wgt, sato_th_off):
@@ -495,7 +498,8 @@ for win_m, ovlp_m in zip(win_ms, overlap_ms):
         step_n = int((win_m - ovlp_m) / dx)
 
         dt_slow = np.median(np.diff((radargram['time'] - radargram['time'][0]).astype('timedelta64[ns]').astype(np.float64).compute())) * 1e-9
-        freq = np.fft.fftshift(np.fft.fftfreq(win_n, d=dt_slow))
+        freq = np.fft.fftshift(np.fft.fftfreq(win_n, d=dx))
+        print(f"in 1617 for Loop: dx = {dx} m, dt_slow = {dt_slow} s, win_n = {win_n}, step_n = {step_n}, freq = {freq[0]} to {freq[-1]} Hz")
 
         # Chose y range that encompasses bed and in y
         start_y = 1100
@@ -558,7 +562,9 @@ for win_m, ovlp_m in zip(win_ms, overlap_ms):
             step_n = int((win_m - ovlp_m) / dx)
 
             dt_slow = np.median(np.diff((radargram['time'] - radargram['time'][0]).astype('timedelta64[ns]').astype(np.float64).compute())) * 1e-9
-            freq = np.fft.fftshift(np.fft.fftfreq(win_n, d=dt_slow))
+            freq = np.fft.fftshift(np.fft.fftfreq(win_n, d=dx))
+            print(f"in 1819 for Loop: dx = {dx} m, dt_slow = {dt_slow} s, win_n = {win_n}, step_n = {step_n}, freq = {freq[0]} to {freq[-1]} Hz")
+
 
             # Chose y range that encompasses bed and in y
             start_y = 1100
@@ -791,6 +797,7 @@ for win_m, ovlp_m in zip(win_ms, overlap_ms):
         for x_center_list, y_center_list, plotting,velocity in zip(plot_dict['x_centers'], plot_dict['y_centers'], plot_dict['ridge_params_list'], velocities):
             width = [rp['right'] - rp['left'] for rp in plotting]
             scaled_width = [w * velocity for w in width]  # Scale by velocity to get doppler width
+            print(f"Scaled width: {scaled_width}")
             
             y_maxes = np.array([rp['y_at_max'] for rp in plotting])
             mask = y_maxes < 1250
@@ -1011,7 +1018,7 @@ for win_m, ovlp_m in zip(win_ms, overlap_ms):
     )
     cbbox.set_facecolor([0,0,0,0.9])
 
-    cb = ax.scatter(matched_coords[:,0], matched_coords[:,1], c=ridge_diff_velocity_scaled, cmap='seismic', s=30, zorder=4,vmin=-600,vmax=600) # Dummy scatter for colorbar
+    cb = ax.scatter(matched_coords[:,0], matched_coords[:,1], c=ridge_diff_velocity_scaled, cmap='seismic', s=30, zorder=4,vmin=-30,vmax=30) # Dummy scatter for colorbar
     cbaxes = inset_axes(cbbox, '92%', '20%', loc = 'center')
     cbar=fig.colorbar(cb, cax=cbaxes, orientation='horizontal', extend='both') #make colorbar
     cbar.outline.set_edgecolor('white')
@@ -1149,7 +1156,7 @@ for win_m, ovlp_m in zip(win_ms, overlap_ms):
     )
     cbbox.set_facecolor([0,0,0,0.9])
 
-    cb = ax.scatter(x_cross_1819, y_cross_1819, c=ridge_diff_velocity_corrected_1819, cmap='viridis', s=30, zorder=4,vmin=0,vmax=600) # Dummy scatter for colorbar
+    cb = ax.scatter(x_cross_1819, y_cross_1819, c=ridge_diff_velocity_corrected_1819, cmap='viridis', s=30, zorder=4,vmin=0,vmax=30) # Dummy scatter for colorbar
     cbaxes = inset_axes(cbbox, '92%', '20%', loc = 'center')
     cbar=fig.colorbar(cb,cax=cbaxes, orientation='horizontal') #make colorbar
     cbar.outline.set_edgecolor('white')
@@ -1295,7 +1302,7 @@ for win_m, ovlp_m in zip(win_ms, overlap_ms):
     )
     cbbox.set_facecolor([0,0,0,0.9])
 
-    cb = ax.scatter(x_cross, y_cross, c=ridge_diff_velocity_corrected_1617, cmap='viridis', s=30, zorder=4,vmin=0,vmax=600) # Dummy scatter for colorbar
+    cb = ax.scatter(x_cross, y_cross, c=ridge_diff_velocity_corrected_1617, cmap='viridis', s=30, zorder=4,vmin=0,vmax=30) # Dummy scatter for colorbar
     cbaxes = inset_axes(cbbox, '92%', '20%', loc = 'center')
     cbar=fig.colorbar(cb,cax=cbaxes, orientation='horizontal') #make colorbar
     cbar.outline.set_edgecolor('white')
@@ -1385,7 +1392,7 @@ for win_m, ovlp_m in zip(win_ms, overlap_ms):
             scaled_width[mask] = np.nan
             scaled_width_list.append(scaled_width)
 
-            cb = ax.scatter(x_center_list, y_center_list, c=scaled_width, cmap='viridis', s=30, zorder=4,vmin=0,vmax=900)
+            cb = ax.scatter(x_center_list, y_center_list, c=scaled_width, cmap='viridis', s=30, zorder=4,vmin=0,vmax=30)
 
         # Add colorbar
         k_cbar_anchor = (0,0)
@@ -1598,7 +1605,7 @@ for win_m, ovlp_m in zip(win_ms, overlap_ms):
     )
     cbbox.set_facecolor([0,0,0,0.9])
 
-    cb = ax3.scatter(matched_coords[:,0], matched_coords[:,1], c=ridge_diff_velocity_scaled, cmap='seismic', s=30, zorder=4,vmin=-600,vmax=600)
+    cb = ax3.scatter(matched_coords[:,0], matched_coords[:,1], c=ridge_diff_velocity_scaled, cmap='seismic', s=30, zorder=4,vmin=-30,vmax=30)
     cbaxes = inset_axes(cbbox, '92%', '20%', loc = 'center')
     cbar=fig.colorbar(cb,cax=cbaxes, orientation='horizontal',extend='both') #make colorbar
     cbar.outline.set_edgecolor('white')
@@ -1877,12 +1884,12 @@ for win_m, ovlp_m in zip(win_ms, overlap_ms):
     # Maps
     common_panel_elements_S3(ax1, plotting_dict, offset_video_radargrams_1617)
     plot_outlines(ax1, evolving_outlines, DDInSAR_outlines, idx_1617, idx_1819)
-    cb = ax1.scatter(x_cross, y_cross, c=ridge_diff_1617-ridge_diff_velocity_corrected_1617, cmap='seismic', s=30, zorder=4,vmin=-250,vmax=250) 
+    cb = ax1.scatter(x_cross, y_cross, c=ridge_diff_1617-ridge_diff_velocity_corrected_1617, cmap='seismic', s=30, zorder=4,vmin=-50,vmax=50) 
 
 
     common_panel_elements_S3(ax2, plotting_dict_1819, offset_video_radargrams_1819)
     plot_outlines(ax2, evolving_outlines, DDInSAR_outlines, idx_1617, idx_1819)
-    cb = ax2.scatter(x_cross_1819, y_cross_1819, c=ridge_diff_1819-ridge_diff_velocity_corrected_1819, cmap='seismic', s=30, zorder=4,vmin=-250,vmax=250)
+    cb = ax2.scatter(x_cross_1819, y_cross_1819, c=ridge_diff_1819-ridge_diff_velocity_corrected_1819, cmap='seismic', s=30, zorder=4,vmin=-50,vmax=50)
 
     fig.set_facecolor('gainsboro')
 

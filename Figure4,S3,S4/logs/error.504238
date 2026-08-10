@@ -1,0 +1,6 @@
+Traceback (most recent call last):
+  File "/wendianHome/home/m10921061/DavidSpecularity/Figure4,S3,S4/Fig4Wendian.py", line 372, in <module>
+    file_paths_1819 = [os.path.join(offset_video_path_1819, f) for f in os.listdir(offset_video_path_1819) if f.endswith('.nc')]
+                                                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/home/m10921061/scratch/data/DavidSpecularityData/UTG_1819_OffsetVideo'
+srun: error: c041: task 0: Exited with exit code 1
