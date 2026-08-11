@@ -1,0 +1,8 @@
+Running on host: c041
+Working directory: /wendianHome/home/m10921061/DavidSpecularity/Figure4,S3,S4
+Running Slurm Job ID: 522075
+##############
+Processing window length 750 m and overlap 375 m
+##############
+DVG/IBH0c/GL0173a
+in 1617 for Loop: dx = 1.0 m, dt_slow = 0.040400000000000005 s, win_n = 750, step_n = 375, freq = -0.5 to 0.49866666666666665 Hz

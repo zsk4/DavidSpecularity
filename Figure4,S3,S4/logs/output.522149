@@ -1,0 +1,752 @@
+Running on host: c041
+Working directory: /wendianHome/home/m10921061/DavidSpecularity/Figure4,S3,S4
+Running Slurm Job ID: 522149
+##############
+Processing window length 750 m and overlap 375 m
+##############
+DVG/IBH0c/GL0173a
+in 1617 for Loop: dx = 1.0 m, dt_slow = 0.040400000000000005 s, win_n = 750, step_n = 375, freq = -0.5 to 0.49866666666666665 Hz
+DVG/IBH0c/GL0292d
+in 1617 for Loop: dx = 1.0 m, dt_slow = 0.0303 s, win_n = 750, step_n = 375, freq = -0.5 to 0.49866666666666665 Hz
+DVG/IBH0c/GL0700a
+in 1617 for Loop: dx = 1.0 m, dt_slow = 0.0303 s, win_n = 750, step_n = 375, freq = -0.5 to 0.49866666666666665 Hz
+DVG/IBH0c/GL0819a
+in 1617 for Loop: dx = 1.0 m, dt_slow = 0.0286 s, win_n = 750, step_n = 375, freq = -0.5 to 0.49866666666666665 Hz
+DVG/IBH0c/GL1191a
+in 1617 for Loop: dx = 1.0 m, dt_slow = 0.019700000000000002 s, win_n = 750, step_n = 375, freq = -0.5 to 0.49866666666666665 Hz
+DVG/IBH0c/X22a
+in 1617 for Loop: dx = 1.0 m, dt_slow = 0.024200000000000003 s, win_n = 750, step_n = 375, freq = -0.5 to 0.49866666666666665 Hz
+DVG/IBH0c/X23a
+in 1617 for Loop: dx = 1.0 m, dt_slow = 0.024 s, win_n = 750, step_n = 375, freq = -0.5 to 0.49866666666666665 Hz
+DVG/IBH0c/X24a
+in 1617 for Loop: dx = 1.0 m, dt_slow = 0.024300000000000002 s, win_n = 750, step_n = 375, freq = -0.5 to 0.49866666666666665 Hz
+DVG/IBH0c/X25a
+in 1617 for Loop: dx = 1.0 m, dt_slow = 0.0251 s, win_n = 750, step_n = 375, freq = -0.5 to 0.49866666666666665 Hz
+DVG/IBH0c/X26a
+in 1617 for Loop: dx = 1.0 m, dt_slow = 0.0263 s, win_n = 750, step_n = 375, freq = -0.5 to 0.49866666666666665 Hz
+DVG/IBH0c/X27a
+in 1617 for Loop: dx = 1.0 m, dt_slow = 0.0241 s, win_n = 750, step_n = 375, freq = -0.5 to 0.49866666666666665 Hz
+D2DG/IBH0e/X10a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.029 s, win_n = 750, step_n = 375, freq = -0.5 to 0.49866666666666665 Hz
+D2DG/IBH0e/X11a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.028300000000000002 s, win_n = 750, step_n = 375, freq = -0.5 to 0.49866666666666665 Hz
+D2DG/IBH0e/X12a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.029300000000000003 s, win_n = 750, step_n = 375, freq = -0.5 to 0.49866666666666665 Hz
+D2DG/IBH0e/X13a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.0275 s, win_n = 750, step_n = 375, freq = -0.5 to 0.49866666666666665 Hz
+D2DG/IBH0e/X14a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.0297 s, win_n = 750, step_n = 375, freq = -0.5 to 0.49866666666666665 Hz
+D2DG/IBH0e/X15a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.028700000000000003 s, win_n = 750, step_n = 375, freq = -0.5 to 0.49866666666666665 Hz
+D2DG/IBH0e/X17a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.0268 s, win_n = 750, step_n = 375, freq = -0.5 to 0.49866666666666665 Hz
+D2DG/IBH0e/X18a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.029 s, win_n = 750, step_n = 375, freq = -0.5 to 0.49866666666666665 Hz
+D2DG/IBH0e/X19a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.030299000000000003 s, win_n = 750, step_n = 375, freq = -0.5 to 0.49866666666666665 Hz
+D2DG/IBH0e/X20a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.030600000000000002 s, win_n = 750, step_n = 375, freq = -0.5 to 0.49866666666666665 Hz
+D2DG/IBH0e/X21b
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.027200000000000002 s, win_n = 750, step_n = 375, freq = -0.5 to 0.49866666666666665 Hz
+D2DG/IBH0e/X22a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.0275 s, win_n = 750, step_n = 375, freq = -0.5 to 0.49866666666666665 Hz
+D2DG/IBH0e/X23a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.027600000000000003 s, win_n = 750, step_n = 375, freq = -0.5 to 0.49866666666666665 Hz
+D2DG/IBH0e/X24a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.0275 s, win_n = 750, step_n = 375, freq = -0.5 to 0.49866666666666665 Hz
+D2DG/IBH0e/X25a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.026500000000000003 s, win_n = 750, step_n = 375, freq = -0.5 to 0.49866666666666665 Hz
+D2DG/IBH0e/X26a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.0303 s, win_n = 750, step_n = 375, freq = -0.5 to 0.49866666666666665 Hz
+D2DG/IBH0e/X27b
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.029 s, win_n = 750, step_n = 375, freq = -0.5 to 0.49866666666666665 Hz
+D2DG/IBH0e/X28a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.0269 s, win_n = 750, step_n = 375, freq = -0.5 to 0.49866666666666665 Hz
+D2DG/IBH0e/X29a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.027700000000000002 s, win_n = 750, step_n = 375, freq = -0.5 to 0.49866666666666665 Hz
+D2DG/IBH0e/X30a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.028100000000000003 s, win_n = 750, step_n = 375, freq = -0.5 to 0.49866666666666665 Hz
+D2DG/IBH0e/X31a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.0292 s, win_n = 750, step_n = 375, freq = -0.5 to 0.49866666666666665 Hz
+D2DG/IBH0e/X32a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.0262 s, win_n = 750, step_n = 375, freq = -0.5 to 0.49866666666666665 Hz
+D2DG/IBH0e/X33a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.027700000000000002 s, win_n = 750, step_n = 375, freq = -0.5 to 0.49866666666666665 Hz
+D2DG/IBH0e/X34a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.029400000000000003 s, win_n = 750, step_n = 375, freq = -0.5 to 0.49866666666666665 Hz
+D2DG/IBH0e/X35a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.027700000000000002 s, win_n = 750, step_n = 375, freq = -0.5 to 0.49866666666666665 Hz
+D2DG/IBH0e/X37a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.0285 s, win_n = 750, step_n = 375, freq = -0.5 to 0.49866666666666665 Hz
+D2DG/IBH0g/Y22a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.0269 s, win_n = 750, step_n = 375, freq = -0.5 to 0.49866666666666665 Hz
+D2DG/IBH0g/Y23a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.0229 s, win_n = 750, step_n = 375, freq = -0.5 to 0.49866666666666665 Hz
+D2DG/IBH0g/Y24a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.0238 s, win_n = 750, step_n = 375, freq = -0.5 to 0.49866666666666665 Hz
+D2DG/IBH0g/Y25a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.0229 s, win_n = 750, step_n = 375, freq = -0.5 to 0.49866666666666665 Hz
+D2DG/IBH0g/Y26a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.027200000000000002 s, win_n = 750, step_n = 375, freq = -0.5 to 0.49866666666666665 Hz
+D2DG/IBH0g/Y27a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.028300000000000002 s, win_n = 750, step_n = 375, freq = -0.5 to 0.49866666666666665 Hz
+D2DG/IBH0g/Y28a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.0263 s, win_n = 750, step_n = 375, freq = -0.5 to 0.49866666666666665 Hz
+D2DG/IBH0g/Y29a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.0268 s, win_n = 750, step_n = 375, freq = -0.5 to 0.49866666666666665 Hz
+D2DG/IBH0g/Y30a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.025 s, win_n = 750, step_n = 375, freq = -0.5 to 0.49866666666666665 Hz
+D2DG/IBH0g/Y31a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.0263 s, win_n = 750, step_n = 375, freq = -0.5 to 0.49866666666666665 Hz
+D2DG/IBH0g/Y32a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.0267 s, win_n = 750, step_n = 375, freq = -0.5 to 0.49866666666666665 Hz
+D2DG/IBH0g/Y33a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.025 s, win_n = 750, step_n = 375, freq = -0.5 to 0.49866666666666665 Hz
+D2DG/IBH0g/Y34a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.024298999 s, win_n = 750, step_n = 375, freq = -0.5 to 0.49866666666666665 Hz
+D2DG/IBH0g/Y35a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.026600000000000002 s, win_n = 750, step_n = 375, freq = -0.5 to 0.49866666666666665 Hz
+40
+40
+11
+11
+2698
+3565
+2698
+3565
+Velocity 1819: 37.03610810032759 km/hr
+Width [15.25887654 14.51815438 14.41939142 ... 13.33299892 13.92557665
+ 16.34526904]
+2017-01-01 00:00:00 2019-01-01 00:00:00 2017-04-02 06:00:00 2018-10-01 18:00:00
+##############
+Processing window length 1000 m and overlap 250 m
+##############
+DVG/IBH0c/GL0173a
+in 1617 for Loop: dx = 1.0 m, dt_slow = 0.040400000000000005 s, win_n = 1000, step_n = 750, freq = -0.5 to 0.499 Hz
+DVG/IBH0c/GL0292d
+in 1617 for Loop: dx = 1.0 m, dt_slow = 0.0303 s, win_n = 1000, step_n = 750, freq = -0.5 to 0.499 Hz
+DVG/IBH0c/GL0700a
+in 1617 for Loop: dx = 1.0 m, dt_slow = 0.0303 s, win_n = 1000, step_n = 750, freq = -0.5 to 0.499 Hz
+DVG/IBH0c/GL0819a
+in 1617 for Loop: dx = 1.0 m, dt_slow = 0.0286 s, win_n = 1000, step_n = 750, freq = -0.5 to 0.499 Hz
+DVG/IBH0c/GL1191a
+in 1617 for Loop: dx = 1.0 m, dt_slow = 0.019700000000000002 s, win_n = 1000, step_n = 750, freq = -0.5 to 0.499 Hz
+DVG/IBH0c/X22a
+in 1617 for Loop: dx = 1.0 m, dt_slow = 0.024200000000000003 s, win_n = 1000, step_n = 750, freq = -0.5 to 0.499 Hz
+DVG/IBH0c/X23a
+in 1617 for Loop: dx = 1.0 m, dt_slow = 0.024 s, win_n = 1000, step_n = 750, freq = -0.5 to 0.499 Hz
+DVG/IBH0c/X24a
+in 1617 for Loop: dx = 1.0 m, dt_slow = 0.024300000000000002 s, win_n = 1000, step_n = 750, freq = -0.5 to 0.499 Hz
+DVG/IBH0c/X25a
+in 1617 for Loop: dx = 1.0 m, dt_slow = 0.0251 s, win_n = 1000, step_n = 750, freq = -0.5 to 0.499 Hz
+DVG/IBH0c/X26a
+in 1617 for Loop: dx = 1.0 m, dt_slow = 0.0263 s, win_n = 1000, step_n = 750, freq = -0.5 to 0.499 Hz
+DVG/IBH0c/X27a
+in 1617 for Loop: dx = 1.0 m, dt_slow = 0.0241 s, win_n = 1000, step_n = 750, freq = -0.5 to 0.499 Hz
+D2DG/IBH0e/X10a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.029 s, win_n = 1000, step_n = 750, freq = -0.5 to 0.499 Hz
+D2DG/IBH0e/X11a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.028300000000000002 s, win_n = 1000, step_n = 750, freq = -0.5 to 0.499 Hz
+D2DG/IBH0e/X12a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.029300000000000003 s, win_n = 1000, step_n = 750, freq = -0.5 to 0.499 Hz
+D2DG/IBH0e/X13a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.0275 s, win_n = 1000, step_n = 750, freq = -0.5 to 0.499 Hz
+D2DG/IBH0e/X14a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.0297 s, win_n = 1000, step_n = 750, freq = -0.5 to 0.499 Hz
+D2DG/IBH0e/X15a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.028700000000000003 s, win_n = 1000, step_n = 750, freq = -0.5 to 0.499 Hz
+D2DG/IBH0e/X17a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.0268 s, win_n = 1000, step_n = 750, freq = -0.5 to 0.499 Hz
+D2DG/IBH0e/X18a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.029 s, win_n = 1000, step_n = 750, freq = -0.5 to 0.499 Hz
+D2DG/IBH0e/X19a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.030299000000000003 s, win_n = 1000, step_n = 750, freq = -0.5 to 0.499 Hz
+D2DG/IBH0e/X20a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.030600000000000002 s, win_n = 1000, step_n = 750, freq = -0.5 to 0.499 Hz
+D2DG/IBH0e/X21b
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.027200000000000002 s, win_n = 1000, step_n = 750, freq = -0.5 to 0.499 Hz
+D2DG/IBH0e/X22a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.0275 s, win_n = 1000, step_n = 750, freq = -0.5 to 0.499 Hz
+D2DG/IBH0e/X23a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.027600000000000003 s, win_n = 1000, step_n = 750, freq = -0.5 to 0.499 Hz
+D2DG/IBH0e/X24a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.0275 s, win_n = 1000, step_n = 750, freq = -0.5 to 0.499 Hz
+D2DG/IBH0e/X25a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.026500000000000003 s, win_n = 1000, step_n = 750, freq = -0.5 to 0.499 Hz
+D2DG/IBH0e/X26a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.0303 s, win_n = 1000, step_n = 750, freq = -0.5 to 0.499 Hz
+D2DG/IBH0e/X27b
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.029 s, win_n = 1000, step_n = 750, freq = -0.5 to 0.499 Hz
+D2DG/IBH0e/X28a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.0269 s, win_n = 1000, step_n = 750, freq = -0.5 to 0.499 Hz
+D2DG/IBH0e/X29a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.027700000000000002 s, win_n = 1000, step_n = 750, freq = -0.5 to 0.499 Hz
+D2DG/IBH0e/X30a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.028100000000000003 s, win_n = 1000, step_n = 750, freq = -0.5 to 0.499 Hz
+D2DG/IBH0e/X31a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.0292 s, win_n = 1000, step_n = 750, freq = -0.5 to 0.499 Hz
+D2DG/IBH0e/X32a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.0262 s, win_n = 1000, step_n = 750, freq = -0.5 to 0.499 Hz
+D2DG/IBH0e/X33a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.027700000000000002 s, win_n = 1000, step_n = 750, freq = -0.5 to 0.499 Hz
+D2DG/IBH0e/X34a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.029400000000000003 s, win_n = 1000, step_n = 750, freq = -0.5 to 0.499 Hz
+D2DG/IBH0e/X35a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.027700000000000002 s, win_n = 1000, step_n = 750, freq = -0.5 to 0.499 Hz
+D2DG/IBH0e/X37a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.0285 s, win_n = 1000, step_n = 750, freq = -0.5 to 0.499 Hz
+D2DG/IBH0g/Y22a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.0269 s, win_n = 1000, step_n = 750, freq = -0.5 to 0.499 Hz
+D2DG/IBH0g/Y23a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.0229 s, win_n = 1000, step_n = 750, freq = -0.5 to 0.499 Hz
+D2DG/IBH0g/Y24a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.0238 s, win_n = 1000, step_n = 750, freq = -0.5 to 0.499 Hz
+D2DG/IBH0g/Y25a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.0229 s, win_n = 1000, step_n = 750, freq = -0.5 to 0.499 Hz
+D2DG/IBH0g/Y26a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.027200000000000002 s, win_n = 1000, step_n = 750, freq = -0.5 to 0.499 Hz
+D2DG/IBH0g/Y27a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.028300000000000002 s, win_n = 1000, step_n = 750, freq = -0.5 to 0.499 Hz
+D2DG/IBH0g/Y28a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.0263 s, win_n = 1000, step_n = 750, freq = -0.5 to 0.499 Hz
+D2DG/IBH0g/Y29a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.0268 s, win_n = 1000, step_n = 750, freq = -0.5 to 0.499 Hz
+D2DG/IBH0g/Y30a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.025 s, win_n = 1000, step_n = 750, freq = -0.5 to 0.499 Hz
+D2DG/IBH0g/Y31a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.0263 s, win_n = 1000, step_n = 750, freq = -0.5 to 0.499 Hz
+D2DG/IBH0g/Y32a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.0267 s, win_n = 1000, step_n = 750, freq = -0.5 to 0.499 Hz
+D2DG/IBH0g/Y33a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.025 s, win_n = 1000, step_n = 750, freq = -0.5 to 0.499 Hz
+D2DG/IBH0g/Y34a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.024298999 s, win_n = 1000, step_n = 750, freq = -0.5 to 0.499 Hz
+D2DG/IBH0g/Y35a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.026600000000000002 s, win_n = 1000, step_n = 750, freq = -0.5 to 0.499 Hz
+40
+40
+11
+11
+1345
+1782
+1345
+1782
+Velocity 1819: 37.04248967755433 km/hr
+Width [15.7801006  14.48361346 13.44642375 ...  7.40849794 13.29825379
+ 15.70601562]
+2017-01-01 00:00:00 2019-01-01 00:00:00 2017-04-02 06:00:00 2018-10-01 18:00:00
+##############
+Processing window length 1000 m and overlap 500 m
+##############
+DVG/IBH0c/GL0173a
+in 1617 for Loop: dx = 1.0 m, dt_slow = 0.040400000000000005 s, win_n = 1000, step_n = 500, freq = -0.5 to 0.499 Hz
+DVG/IBH0c/GL0292d
+in 1617 for Loop: dx = 1.0 m, dt_slow = 0.0303 s, win_n = 1000, step_n = 500, freq = -0.5 to 0.499 Hz
+DVG/IBH0c/GL0700a
+in 1617 for Loop: dx = 1.0 m, dt_slow = 0.0303 s, win_n = 1000, step_n = 500, freq = -0.5 to 0.499 Hz
+DVG/IBH0c/GL0819a
+in 1617 for Loop: dx = 1.0 m, dt_slow = 0.0286 s, win_n = 1000, step_n = 500, freq = -0.5 to 0.499 Hz
+DVG/IBH0c/GL1191a
+in 1617 for Loop: dx = 1.0 m, dt_slow = 0.019700000000000002 s, win_n = 1000, step_n = 500, freq = -0.5 to 0.499 Hz
+DVG/IBH0c/X22a
+in 1617 for Loop: dx = 1.0 m, dt_slow = 0.024200000000000003 s, win_n = 1000, step_n = 500, freq = -0.5 to 0.499 Hz
+DVG/IBH0c/X23a
+in 1617 for Loop: dx = 1.0 m, dt_slow = 0.024 s, win_n = 1000, step_n = 500, freq = -0.5 to 0.499 Hz
+DVG/IBH0c/X24a
+in 1617 for Loop: dx = 1.0 m, dt_slow = 0.024300000000000002 s, win_n = 1000, step_n = 500, freq = -0.5 to 0.499 Hz
+DVG/IBH0c/X25a
+in 1617 for Loop: dx = 1.0 m, dt_slow = 0.0251 s, win_n = 1000, step_n = 500, freq = -0.5 to 0.499 Hz
+DVG/IBH0c/X26a
+in 1617 for Loop: dx = 1.0 m, dt_slow = 0.0263 s, win_n = 1000, step_n = 500, freq = -0.5 to 0.499 Hz
+DVG/IBH0c/X27a
+in 1617 for Loop: dx = 1.0 m, dt_slow = 0.0241 s, win_n = 1000, step_n = 500, freq = -0.5 to 0.499 Hz
+D2DG/IBH0e/X10a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.029 s, win_n = 1000, step_n = 500, freq = -0.5 to 0.499 Hz
+D2DG/IBH0e/X11a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.028300000000000002 s, win_n = 1000, step_n = 500, freq = -0.5 to 0.499 Hz
+D2DG/IBH0e/X12a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.029300000000000003 s, win_n = 1000, step_n = 500, freq = -0.5 to 0.499 Hz
+D2DG/IBH0e/X13a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.0275 s, win_n = 1000, step_n = 500, freq = -0.5 to 0.499 Hz
+D2DG/IBH0e/X14a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.0297 s, win_n = 1000, step_n = 500, freq = -0.5 to 0.499 Hz
+D2DG/IBH0e/X15a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.028700000000000003 s, win_n = 1000, step_n = 500, freq = -0.5 to 0.499 Hz
+D2DG/IBH0e/X17a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.0268 s, win_n = 1000, step_n = 500, freq = -0.5 to 0.499 Hz
+D2DG/IBH0e/X18a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.029 s, win_n = 1000, step_n = 500, freq = -0.5 to 0.499 Hz
+D2DG/IBH0e/X19a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.030299000000000003 s, win_n = 1000, step_n = 500, freq = -0.5 to 0.499 Hz
+D2DG/IBH0e/X20a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.030600000000000002 s, win_n = 1000, step_n = 500, freq = -0.5 to 0.499 Hz
+D2DG/IBH0e/X21b
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.027200000000000002 s, win_n = 1000, step_n = 500, freq = -0.5 to 0.499 Hz
+D2DG/IBH0e/X22a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.0275 s, win_n = 1000, step_n = 500, freq = -0.5 to 0.499 Hz
+D2DG/IBH0e/X23a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.027600000000000003 s, win_n = 1000, step_n = 500, freq = -0.5 to 0.499 Hz
+D2DG/IBH0e/X24a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.0275 s, win_n = 1000, step_n = 500, freq = -0.5 to 0.499 Hz
+D2DG/IBH0e/X25a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.026500000000000003 s, win_n = 1000, step_n = 500, freq = -0.5 to 0.499 Hz
+D2DG/IBH0e/X26a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.0303 s, win_n = 1000, step_n = 500, freq = -0.5 to 0.499 Hz
+D2DG/IBH0e/X27b
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.029 s, win_n = 1000, step_n = 500, freq = -0.5 to 0.499 Hz
+D2DG/IBH0e/X28a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.0269 s, win_n = 1000, step_n = 500, freq = -0.5 to 0.499 Hz
+D2DG/IBH0e/X29a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.027700000000000002 s, win_n = 1000, step_n = 500, freq = -0.5 to 0.499 Hz
+D2DG/IBH0e/X30a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.028100000000000003 s, win_n = 1000, step_n = 500, freq = -0.5 to 0.499 Hz
+D2DG/IBH0e/X31a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.0292 s, win_n = 1000, step_n = 500, freq = -0.5 to 0.499 Hz
+D2DG/IBH0e/X32a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.0262 s, win_n = 1000, step_n = 500, freq = -0.5 to 0.499 Hz
+D2DG/IBH0e/X33a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.027700000000000002 s, win_n = 1000, step_n = 500, freq = -0.5 to 0.499 Hz
+D2DG/IBH0e/X34a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.029400000000000003 s, win_n = 1000, step_n = 500, freq = -0.5 to 0.499 Hz
+D2DG/IBH0e/X35a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.027700000000000002 s, win_n = 1000, step_n = 500, freq = -0.5 to 0.499 Hz
+D2DG/IBH0e/X37a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.0285 s, win_n = 1000, step_n = 500, freq = -0.5 to 0.499 Hz
+D2DG/IBH0g/Y22a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.0269 s, win_n = 1000, step_n = 500, freq = -0.5 to 0.499 Hz
+D2DG/IBH0g/Y23a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.0229 s, win_n = 1000, step_n = 500, freq = -0.5 to 0.499 Hz
+D2DG/IBH0g/Y24a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.0238 s, win_n = 1000, step_n = 500, freq = -0.5 to 0.499 Hz
+D2DG/IBH0g/Y25a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.0229 s, win_n = 1000, step_n = 500, freq = -0.5 to 0.499 Hz
+D2DG/IBH0g/Y26a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.027200000000000002 s, win_n = 1000, step_n = 500, freq = -0.5 to 0.499 Hz
+D2DG/IBH0g/Y27a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.028300000000000002 s, win_n = 1000, step_n = 500, freq = -0.5 to 0.499 Hz
+D2DG/IBH0g/Y28a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.0263 s, win_n = 1000, step_n = 500, freq = -0.5 to 0.499 Hz
+D2DG/IBH0g/Y29a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.0268 s, win_n = 1000, step_n = 500, freq = -0.5 to 0.499 Hz
+D2DG/IBH0g/Y30a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.025 s, win_n = 1000, step_n = 500, freq = -0.5 to 0.499 Hz
+D2DG/IBH0g/Y31a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.0263 s, win_n = 1000, step_n = 500, freq = -0.5 to 0.499 Hz
+D2DG/IBH0g/Y32a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.0267 s, win_n = 1000, step_n = 500, freq = -0.5 to 0.499 Hz
+D2DG/IBH0g/Y33a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.025 s, win_n = 1000, step_n = 500, freq = -0.5 to 0.499 Hz
+D2DG/IBH0g/Y34a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.024298999 s, win_n = 1000, step_n = 500, freq = -0.5 to 0.499 Hz
+D2DG/IBH0g/Y35a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.026600000000000002 s, win_n = 1000, step_n = 500, freq = -0.5 to 0.499 Hz
+40
+40
+11
+11
+2006
+2671
+2006
+2671
+Velocity 1819: 37.036257947758166 km/hr
+Width [15.77744589 14.99968447 13.85156047 ... 10.0368259  13.2960166
+ 14.40710434]
+2017-01-01 00:00:00 2019-01-01 00:00:00 2017-04-02 06:00:00 2018-10-01 18:00:00
+##############
+Processing window length 1250 m and overlap 625 m
+##############
+DVG/IBH0c/GL0173a
+in 1617 for Loop: dx = 1.0 m, dt_slow = 0.040400000000000005 s, win_n = 1250, step_n = 625, freq = -0.5 to 0.49920000000000003 Hz
+DVG/IBH0c/GL0292d
+in 1617 for Loop: dx = 1.0 m, dt_slow = 0.0303 s, win_n = 1250, step_n = 625, freq = -0.5 to 0.49920000000000003 Hz
+DVG/IBH0c/GL0700a
+in 1617 for Loop: dx = 1.0 m, dt_slow = 0.0303 s, win_n = 1250, step_n = 625, freq = -0.5 to 0.49920000000000003 Hz
+DVG/IBH0c/GL0819a
+in 1617 for Loop: dx = 1.0 m, dt_slow = 0.0286 s, win_n = 1250, step_n = 625, freq = -0.5 to 0.49920000000000003 Hz
+DVG/IBH0c/GL1191a
+in 1617 for Loop: dx = 1.0 m, dt_slow = 0.019700000000000002 s, win_n = 1250, step_n = 625, freq = -0.5 to 0.49920000000000003 Hz
+DVG/IBH0c/X22a
+in 1617 for Loop: dx = 1.0 m, dt_slow = 0.024200000000000003 s, win_n = 1250, step_n = 625, freq = -0.5 to 0.49920000000000003 Hz
+DVG/IBH0c/X23a
+in 1617 for Loop: dx = 1.0 m, dt_slow = 0.024 s, win_n = 1250, step_n = 625, freq = -0.5 to 0.49920000000000003 Hz
+DVG/IBH0c/X24a
+in 1617 for Loop: dx = 1.0 m, dt_slow = 0.024300000000000002 s, win_n = 1250, step_n = 625, freq = -0.5 to 0.49920000000000003 Hz
+DVG/IBH0c/X25a
+in 1617 for Loop: dx = 1.0 m, dt_slow = 0.0251 s, win_n = 1250, step_n = 625, freq = -0.5 to 0.49920000000000003 Hz
+DVG/IBH0c/X26a
+in 1617 for Loop: dx = 1.0 m, dt_slow = 0.0263 s, win_n = 1250, step_n = 625, freq = -0.5 to 0.49920000000000003 Hz
+DVG/IBH0c/X27a
+in 1617 for Loop: dx = 1.0 m, dt_slow = 0.0241 s, win_n = 1250, step_n = 625, freq = -0.5 to 0.49920000000000003 Hz
+D2DG/IBH0e/X10a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.029 s, win_n = 1250, step_n = 625, freq = -0.5 to 0.49920000000000003 Hz
+D2DG/IBH0e/X11a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.028300000000000002 s, win_n = 1250, step_n = 625, freq = -0.5 to 0.49920000000000003 Hz
+D2DG/IBH0e/X12a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.029300000000000003 s, win_n = 1250, step_n = 625, freq = -0.5 to 0.49920000000000003 Hz
+D2DG/IBH0e/X13a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.0275 s, win_n = 1250, step_n = 625, freq = -0.5 to 0.49920000000000003 Hz
+D2DG/IBH0e/X14a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.0297 s, win_n = 1250, step_n = 625, freq = -0.5 to 0.49920000000000003 Hz
+D2DG/IBH0e/X15a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.028700000000000003 s, win_n = 1250, step_n = 625, freq = -0.5 to 0.49920000000000003 Hz
+D2DG/IBH0e/X17a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.0268 s, win_n = 1250, step_n = 625, freq = -0.5 to 0.49920000000000003 Hz
+D2DG/IBH0e/X18a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.029 s, win_n = 1250, step_n = 625, freq = -0.5 to 0.49920000000000003 Hz
+D2DG/IBH0e/X19a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.030299000000000003 s, win_n = 1250, step_n = 625, freq = -0.5 to 0.49920000000000003 Hz
+D2DG/IBH0e/X20a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.030600000000000002 s, win_n = 1250, step_n = 625, freq = -0.5 to 0.49920000000000003 Hz
+D2DG/IBH0e/X21b
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.027200000000000002 s, win_n = 1250, step_n = 625, freq = -0.5 to 0.49920000000000003 Hz
+D2DG/IBH0e/X22a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.0275 s, win_n = 1250, step_n = 625, freq = -0.5 to 0.49920000000000003 Hz
+D2DG/IBH0e/X23a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.027600000000000003 s, win_n = 1250, step_n = 625, freq = -0.5 to 0.49920000000000003 Hz
+D2DG/IBH0e/X24a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.0275 s, win_n = 1250, step_n = 625, freq = -0.5 to 0.49920000000000003 Hz
+D2DG/IBH0e/X25a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.026500000000000003 s, win_n = 1250, step_n = 625, freq = -0.5 to 0.49920000000000003 Hz
+D2DG/IBH0e/X26a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.0303 s, win_n = 1250, step_n = 625, freq = -0.5 to 0.49920000000000003 Hz
+D2DG/IBH0e/X27b
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.029 s, win_n = 1250, step_n = 625, freq = -0.5 to 0.49920000000000003 Hz
+D2DG/IBH0e/X28a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.0269 s, win_n = 1250, step_n = 625, freq = -0.5 to 0.49920000000000003 Hz
+D2DG/IBH0e/X29a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.027700000000000002 s, win_n = 1250, step_n = 625, freq = -0.5 to 0.49920000000000003 Hz
+D2DG/IBH0e/X30a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.028100000000000003 s, win_n = 1250, step_n = 625, freq = -0.5 to 0.49920000000000003 Hz
+D2DG/IBH0e/X31a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.0292 s, win_n = 1250, step_n = 625, freq = -0.5 to 0.49920000000000003 Hz
+D2DG/IBH0e/X32a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.0262 s, win_n = 1250, step_n = 625, freq = -0.5 to 0.49920000000000003 Hz
+D2DG/IBH0e/X33a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.027700000000000002 s, win_n = 1250, step_n = 625, freq = -0.5 to 0.49920000000000003 Hz
+D2DG/IBH0e/X34a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.029400000000000003 s, win_n = 1250, step_n = 625, freq = -0.5 to 0.49920000000000003 Hz
+D2DG/IBH0e/X35a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.027700000000000002 s, win_n = 1250, step_n = 625, freq = -0.5 to 0.49920000000000003 Hz
+D2DG/IBH0e/X37a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.0285 s, win_n = 1250, step_n = 625, freq = -0.5 to 0.49920000000000003 Hz
+D2DG/IBH0g/Y22a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.0269 s, win_n = 1250, step_n = 625, freq = -0.5 to 0.49920000000000003 Hz
+D2DG/IBH0g/Y23a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.0229 s, win_n = 1250, step_n = 625, freq = -0.5 to 0.49920000000000003 Hz
+D2DG/IBH0g/Y24a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.0238 s, win_n = 1250, step_n = 625, freq = -0.5 to 0.49920000000000003 Hz
+D2DG/IBH0g/Y25a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.0229 s, win_n = 1250, step_n = 625, freq = -0.5 to 0.49920000000000003 Hz
+D2DG/IBH0g/Y26a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.027200000000000002 s, win_n = 1250, step_n = 625, freq = -0.5 to 0.49920000000000003 Hz
+D2DG/IBH0g/Y27a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.028300000000000002 s, win_n = 1250, step_n = 625, freq = -0.5 to 0.49920000000000003 Hz
+D2DG/IBH0g/Y28a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.0263 s, win_n = 1250, step_n = 625, freq = -0.5 to 0.49920000000000003 Hz
+D2DG/IBH0g/Y29a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.0268 s, win_n = 1250, step_n = 625, freq = -0.5 to 0.49920000000000003 Hz
+D2DG/IBH0g/Y30a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.025 s, win_n = 1250, step_n = 625, freq = -0.5 to 0.49920000000000003 Hz
+D2DG/IBH0g/Y31a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.0263 s, win_n = 1250, step_n = 625, freq = -0.5 to 0.49920000000000003 Hz
+D2DG/IBH0g/Y32a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.0267 s, win_n = 1250, step_n = 625, freq = -0.5 to 0.49920000000000003 Hz
+D2DG/IBH0g/Y33a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.025 s, win_n = 1250, step_n = 625, freq = -0.5 to 0.49920000000000003 Hz
+D2DG/IBH0g/Y34a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.024298999 s, win_n = 1250, step_n = 625, freq = -0.5 to 0.49920000000000003 Hz
+D2DG/IBH0g/Y35a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.026600000000000002 s, win_n = 1250, step_n = 625, freq = -0.5 to 0.49920000000000003 Hz
+40
+40
+11
+11
+1592
+2133
+1592
+2133
+Velocity 1819: 37.034415146749474 km/hr
+Width [15.79147462 15.19892398 15.02115878 ...  7.67353082 13.86568503
+ 15.58408189]
+2017-01-01 00:00:00 2019-01-01 00:00:00 2017-04-02 06:00:00 2018-10-01 18:00:00
+##############
+Processing window length 1500 m and overlap 500 m
+##############
+DVG/IBH0c/GL0173a
+in 1617 for Loop: dx = 1.0 m, dt_slow = 0.040400000000000005 s, win_n = 1500, step_n = 1000, freq = -0.5 to 0.4993333333333333 Hz
+DVG/IBH0c/GL0292d
+in 1617 for Loop: dx = 1.0 m, dt_slow = 0.0303 s, win_n = 1500, step_n = 1000, freq = -0.5 to 0.4993333333333333 Hz
+DVG/IBH0c/GL0700a
+in 1617 for Loop: dx = 1.0 m, dt_slow = 0.0303 s, win_n = 1500, step_n = 1000, freq = -0.5 to 0.4993333333333333 Hz
+DVG/IBH0c/GL0819a
+in 1617 for Loop: dx = 1.0 m, dt_slow = 0.0286 s, win_n = 1500, step_n = 1000, freq = -0.5 to 0.4993333333333333 Hz
+DVG/IBH0c/GL1191a
+in 1617 for Loop: dx = 1.0 m, dt_slow = 0.019700000000000002 s, win_n = 1500, step_n = 1000, freq = -0.5 to 0.4993333333333333 Hz
+DVG/IBH0c/X22a
+in 1617 for Loop: dx = 1.0 m, dt_slow = 0.024200000000000003 s, win_n = 1500, step_n = 1000, freq = -0.5 to 0.4993333333333333 Hz
+DVG/IBH0c/X23a
+in 1617 for Loop: dx = 1.0 m, dt_slow = 0.024 s, win_n = 1500, step_n = 1000, freq = -0.5 to 0.4993333333333333 Hz
+DVG/IBH0c/X24a
+in 1617 for Loop: dx = 1.0 m, dt_slow = 0.024300000000000002 s, win_n = 1500, step_n = 1000, freq = -0.5 to 0.4993333333333333 Hz
+DVG/IBH0c/X25a
+in 1617 for Loop: dx = 1.0 m, dt_slow = 0.0251 s, win_n = 1500, step_n = 1000, freq = -0.5 to 0.4993333333333333 Hz
+DVG/IBH0c/X26a
+in 1617 for Loop: dx = 1.0 m, dt_slow = 0.0263 s, win_n = 1500, step_n = 1000, freq = -0.5 to 0.4993333333333333 Hz
+DVG/IBH0c/X27a
+in 1617 for Loop: dx = 1.0 m, dt_slow = 0.0241 s, win_n = 1500, step_n = 1000, freq = -0.5 to 0.4993333333333333 Hz
+D2DG/IBH0e/X10a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.029 s, win_n = 1500, step_n = 1000, freq = -0.5 to 0.4993333333333333 Hz
+D2DG/IBH0e/X11a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.028300000000000002 s, win_n = 1500, step_n = 1000, freq = -0.5 to 0.4993333333333333 Hz
+D2DG/IBH0e/X12a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.029300000000000003 s, win_n = 1500, step_n = 1000, freq = -0.5 to 0.4993333333333333 Hz
+D2DG/IBH0e/X13a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.0275 s, win_n = 1500, step_n = 1000, freq = -0.5 to 0.4993333333333333 Hz
+D2DG/IBH0e/X14a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.0297 s, win_n = 1500, step_n = 1000, freq = -0.5 to 0.4993333333333333 Hz
+D2DG/IBH0e/X15a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.028700000000000003 s, win_n = 1500, step_n = 1000, freq = -0.5 to 0.4993333333333333 Hz
+D2DG/IBH0e/X17a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.0268 s, win_n = 1500, step_n = 1000, freq = -0.5 to 0.4993333333333333 Hz
+D2DG/IBH0e/X18a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.029 s, win_n = 1500, step_n = 1000, freq = -0.5 to 0.4993333333333333 Hz
+D2DG/IBH0e/X19a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.030299000000000003 s, win_n = 1500, step_n = 1000, freq = -0.5 to 0.4993333333333333 Hz
+D2DG/IBH0e/X20a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.030600000000000002 s, win_n = 1500, step_n = 1000, freq = -0.5 to 0.4993333333333333 Hz
+D2DG/IBH0e/X21b
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.027200000000000002 s, win_n = 1500, step_n = 1000, freq = -0.5 to 0.4993333333333333 Hz
+D2DG/IBH0e/X22a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.0275 s, win_n = 1500, step_n = 1000, freq = -0.5 to 0.4993333333333333 Hz
+D2DG/IBH0e/X23a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.027600000000000003 s, win_n = 1500, step_n = 1000, freq = -0.5 to 0.4993333333333333 Hz
+D2DG/IBH0e/X24a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.0275 s, win_n = 1500, step_n = 1000, freq = -0.5 to 0.4993333333333333 Hz
+D2DG/IBH0e/X25a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.026500000000000003 s, win_n = 1500, step_n = 1000, freq = -0.5 to 0.4993333333333333 Hz
+D2DG/IBH0e/X26a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.0303 s, win_n = 1500, step_n = 1000, freq = -0.5 to 0.4993333333333333 Hz
+D2DG/IBH0e/X27b
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.029 s, win_n = 1500, step_n = 1000, freq = -0.5 to 0.4993333333333333 Hz
+D2DG/IBH0e/X28a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.0269 s, win_n = 1500, step_n = 1000, freq = -0.5 to 0.4993333333333333 Hz
+D2DG/IBH0e/X29a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.027700000000000002 s, win_n = 1500, step_n = 1000, freq = -0.5 to 0.4993333333333333 Hz
+D2DG/IBH0e/X30a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.028100000000000003 s, win_n = 1500, step_n = 1000, freq = -0.5 to 0.4993333333333333 Hz
+D2DG/IBH0e/X31a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.0292 s, win_n = 1500, step_n = 1000, freq = -0.5 to 0.4993333333333333 Hz
+D2DG/IBH0e/X32a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.0262 s, win_n = 1500, step_n = 1000, freq = -0.5 to 0.4993333333333333 Hz
+D2DG/IBH0e/X33a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.027700000000000002 s, win_n = 1500, step_n = 1000, freq = -0.5 to 0.4993333333333333 Hz
+D2DG/IBH0e/X34a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.029400000000000003 s, win_n = 1500, step_n = 1000, freq = -0.5 to 0.4993333333333333 Hz
+D2DG/IBH0e/X35a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.027700000000000002 s, win_n = 1500, step_n = 1000, freq = -0.5 to 0.4993333333333333 Hz
+D2DG/IBH0e/X37a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.0285 s, win_n = 1500, step_n = 1000, freq = -0.5 to 0.4993333333333333 Hz
+D2DG/IBH0g/Y22a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.0269 s, win_n = 1500, step_n = 1000, freq = -0.5 to 0.4993333333333333 Hz
+D2DG/IBH0g/Y23a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.0229 s, win_n = 1500, step_n = 1000, freq = -0.5 to 0.4993333333333333 Hz
+D2DG/IBH0g/Y24a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.0238 s, win_n = 1500, step_n = 1000, freq = -0.5 to 0.4993333333333333 Hz
+D2DG/IBH0g/Y25a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.0229 s, win_n = 1500, step_n = 1000, freq = -0.5 to 0.4993333333333333 Hz
+D2DG/IBH0g/Y26a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.027200000000000002 s, win_n = 1500, step_n = 1000, freq = -0.5 to 0.4993333333333333 Hz
+D2DG/IBH0g/Y27a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.028300000000000002 s, win_n = 1500, step_n = 1000, freq = -0.5 to 0.4993333333333333 Hz
+D2DG/IBH0g/Y28a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.0263 s, win_n = 1500, step_n = 1000, freq = -0.5 to 0.4993333333333333 Hz
+D2DG/IBH0g/Y29a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.0268 s, win_n = 1500, step_n = 1000, freq = -0.5 to 0.4993333333333333 Hz
+D2DG/IBH0g/Y30a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.025 s, win_n = 1500, step_n = 1000, freq = -0.5 to 0.4993333333333333 Hz
+D2DG/IBH0g/Y31a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.0263 s, win_n = 1500, step_n = 1000, freq = -0.5 to 0.4993333333333333 Hz
+D2DG/IBH0g/Y32a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.0267 s, win_n = 1500, step_n = 1000, freq = -0.5 to 0.4993333333333333 Hz
+D2DG/IBH0g/Y33a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.025 s, win_n = 1500, step_n = 1000, freq = -0.5 to 0.4993333333333333 Hz
+D2DG/IBH0g/Y34a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.024298999 s, win_n = 1500, step_n = 1000, freq = -0.5 to 0.4993333333333333 Hz
+D2DG/IBH0g/Y35a
+in 1819 for Loop: dx = 1.0 m, dt_slow = 0.026600000000000002 s, win_n = 1500, step_n = 1000, freq = -0.5 to 0.4993333333333333 Hz
+40
+40
+11
+11
+992
+1332
+992
+1332
+Velocity 1819: 37.0475144008828 km/hr
+Width [15.97982788 16.05392291 16.64668314 14.30034056 13.04072507 17.90629863
+ 14.47322896  9.28657694  8.99019683  9.68175043  9.18778357  8.49622997
+ 10.94136592 13.95456376 10.79317586 11.68231621 12.89253501 16.62198479
+ 14.69551405 14.47322896 14.37443559 13.8063737  19.85746772 21.31466995
+ 20.57371966 19.0424224  19.43759589 19.61048429 16.39969971 16.64668314
+  0.07409503  0.54336354 13.8063737  16.59728645 12.89253501  9.73114712
+ 19.09181909 16.39969971 14.74491073 15.14008422 14.74491073 15.90573285
+ 15.28827428 15.80693948 18.94362903 19.75867435 17.53582348 19.46229423
+ 17.68401354 18.64724892 19.36350086 17.73341023 16.39969971  8.17515151
+  1.16082212 18.3508688  21.46286001 19.3881992  17.68401354 15.93043119
+ 10.66968415 12.34917147  9.97813055  9.97813055 10.27451066 12.17628307
+ 13.48529524 13.18891513  8.79261008  0.56806189  0.02469834 10.32390735
+ 14.79430742 16.27620799 14.74491073 18.869534   19.70927766 14.17684884
+ 11.95399798 11.16365101 10.84257255 14.27564222 18.47436051 18.94362903
+ 14.00396044 20.05505446 14.69551405 20.67251304 11.04015929 10.94136592
+  8.69381671  0.93853703 13.53469193 16.69607982 17.33823674 18.91893069
+ 15.21417925 18.10388537 11.97869632 14.17684884  9.92873386 12.34917147
+  7.40950288  9.03959351 13.26301016 16.86896822 17.06655497  7.75527968
+ 18.89423234 16.47379474 22.40139704 17.98039366 19.63518263 18.10388537
+ 16.89366657  0.5186652   8.34803991  5.38423876  8.19984985 11.70701455
+ 13.6334853   0.24698343 13.75697701 16.91836491 16.44909639 18.91893069
+ 17.75810857  7.68118465 18.47436051 16.74547651 17.88160028 15.43646433
+  7.18721779  7.55769294  3.82824315  8.37273825 10.79317586 12.44796484
+ 11.41063444  3.53186304  3.11199121 11.33653941 15.28827428 12.15158472
+  6.59445756  5.53242882  0.14819006 12.99132838  6.17458573 14.34973724
+  4.59389179  8.52092831 11.60822118 16.27620799 17.93099697  7.11312276
+  9.97813055  7.01432939 10.24981232  8.27394488 11.78110958 10.74377918
+ 13.48529524 13.58408861 13.60878696 14.99189416 14.05335713  6.27337911
+ 10.39800238  3.90233818  9.21248191  1.95116909  6.98963105  9.434767
+  5.43363545 11.43533278 18.12858371 15.43646433 12.67024993 13.48529524
+  0.864442   10.99076261  0.27168177  8.99019683 10.79317586  0.29638012
+ 12.34917147 18.77074063 15.38706765 13.95456376  0.12349171 13.8063737
+ 14.12745216 12.2503781  14.3250389   7.68118465  0.37047514  5.33484207
+  3.5071647   7.50829625 15.0165925  11.73171289 12.17628307  3.97643321
+  0.24698343  8.76791174 15.14008422 12.4232665  12.89253501 15.04129085
+ 16.64668314 18.22737709 14.89310079 13.85577039  8.84200677  9.38537031
+  7.75527968 13.70758033  4.27281333 14.47322896  9.38537031 11.48472946
+  0.24698343  9.65705209 14.94249748 15.78224113 21.38876498 21.04298818
+ 18.89423234 11.11425432 13.01602673 13.70758033  9.6076554   7.8787714
+  8.47153163 17.68401354 10.32390735  9.97813055  9.45946534  7.23661448
+ 12.69494827 13.68288199 16.86896822 19.5610876  14.42383227  8.47153163
+ 13.83107204 16.57258811 16.99245994 14.96719582 10.52149409 11.04015929
+ 15.85633616 12.89253501  0.71625195 10.84257255  7.53299459  8.69381671
+  9.68175043  6.52036253  6.79204431  9.9534322  16.67138148 17.09125331
+ 16.22681131 10.02752723  6.34747413 10.94136592 15.14008422 14.44853062
+ 15.53525771 16.15271628 16.35030302 12.99132838  5.85350728  9.2618786
+  9.9534322  11.38593609  6.44626751  8.69381671 10.05222557  8.96549849
+  5.73001556 16.67138148 16.49849308 18.15328206 18.6966456  17.41233177
+ 15.78224113 14.62141902  9.68175043 12.86783667 14.44853062 15.75754279
+ 14.4979273  17.98039366 12.91723335  7.53299459  9.90403552  9.33597363
+  7.48359791  0.64215692 10.79317586  0.27168177  4.96436693  6.61915591
+  6.47096585 14.37443559 14.72021239 19.65988098 15.63405108 16.62198479
+ 13.8063737   9.53356037  5.4089371  10.27451066 10.54619243 13.83107204
+ 15.23887759 13.04072507 11.23774603  6.54506088  5.45833379  9.18778357
+ 13.16421678 15.3623693   9.2618786   0.32107846  4.74208184  6.05109402
+  5.95230065  4.5444951   6.98963105  4.47040007  9.80524214 13.09012175
+ 12.15158472  4.00113156  6.52036253  5.38423876  8.00226311  7.11312276
+  9.2618786   6.42156916 12.81843998 14.07805547 15.68344776 12.15158472
+ 10.76847752  2.39573926  5.26074704  5.73001556  6.54506088 10.52149409
+ 10.94136592 12.15158472 11.21304769 13.6334853  15.88103451 14.8437041
+ 13.04072507  7.90346974  8.3974366   4.47040007  6.14988739  6.79204431
+  7.82937471  8.15045317  4.47040007  2.79091275  5.13725533 11.65761786
+ 12.02809301 12.15158472  9.97813055  7.90346974  6.07579236  8.89140346
+  4.8902719   1.45720223  0.12349171  8.89140346  8.02696145  3.11199121
+ 11.60822118  6.59445756  7.38480454  0.09879337  7.90346974  6.81674265
+  6.07579236  5.4089371   5.18665202  3.38367298  6.02639568  8.12575483
+ 11.48472946  9.85463883  7.48359791  2.93910281  6.24868076 11.28714272
+  9.31127529  0.09879337  8.89140346  8.29864323  0.04939669  0.12349171
+ 11.63291952 10.76847752  7.8787714   0.3457768   1.25961549  1.65478898
+  4.14932161  5.38423876  4.86557356  8.49622997 11.36123775 12.62085324
+ 11.38593609  9.45946534  8.61972168  6.79204431  0.27168177  4.47040007
+ 12.62085324  9.63235374  8.17515151  6.56975922  2.39573926  1.33371052
+  1.28431383  1.08672709  5.13725533  5.97699899  5.63122219  2.81561109
+  5.55712716  9.31127529 11.28714272  8.49622997 10.81787421 13.2877085
+  1.82767738  0.46926852  8.2245482   6.00169733  0.09879337  4.51979676
+  9.01489517  9.70644877  8.2245482   4.27281333 10.00282889  9.06429186
+  8.54562666  5.53242882  5.63122219  6.56975922  5.2360487   4.76678019
+  4.84087522  5.95230065  7.40950288 11.50942781 13.75697701 12.27507644
+  0.24698343  3.11199121  2.96380115 10.69438249  8.79261008  2.81561109
+  1.87707406  0.14819006 13.38650187 15.90573285 10.57089078  8.49622997
+  0.29638012  6.17458573  7.36010619  6.44626751  4.86557356  5.03846196
+  6.47096585 13.53469193 12.79374164 11.16365101  1.11142543  9.50886203
+  6.37217248  5.16195367 11.50942781 11.28714272  5.35954042  1.08672709
+  1.5559956   8.10105648 14.54732399 17.23944337 17.93099697 17.78280691
+ 18.07918703 15.33767096  5.18665202  0.07409503  0.44457017 11.80580792
+  7.21191614  5.77941225  7.01432939  5.5818255   7.01432939  9.9534322
+  6.86613934 11.41063444 12.39856815  8.96549849 12.22567975 16.05392291
+ 14.44853062  9.31127529 15.43646433 15.14008422 11.46003112  1.0373304
+  4.42100339 10.32390735 10.66968415 12.00339467  1.3831072   4.12462327
+  2.61802435 11.08955598  0.09879337  8.19984985  0.04939669  8.3974366
+  9.6076554  10.39800238  2.69211938 10.44739906  9.85463883  7.65648631
+  8.44683328  9.38537031  0.19758674  6.27337911  5.48303213  7.28601117
+  7.95286642  7.21191614  9.01489517  9.80524214 12.89253501 13.01602673
+ 14.74491073 16.54788977 16.37500137 11.46003112 13.36180353  6.52036253
+  4.98906527  7.43420122  8.69381671  5.82880893 15.23887759 10.57089078
+  9.48416369 15.70814611 11.97869632 15.33767096  9.16308523 21.24057492
+ 19.0424224  12.99132838 12.64555158 18.42496383 21.33936829 19.88216606
+ 20.79600475 17.51112514 18.07918703  9.31127529 17.41233177 15.83163782
+ 14.86840245 16.74547651 13.41120021 13.92986541 13.04072507 10.69438249
+  8.7432134   9.75584546 13.04072507  6.76734596  2.04996246  4.76678019
+  5.70531722  8.34803991 10.17571729  0.14819006  3.40837132  0.24698343
+  0.1728884   0.37047514  0.09879337  0.41987183  5.85350728  7.21191614
+  0.1728884   5.03846196  9.03959351  5.65592053  7.53299459 10.91666758
+ 14.27564222 16.27620799  8.84200677  9.434767   11.21304769 11.53412615
+ 12.32447312 14.02865879 20.00565778 18.27677377 16.42439805 13.60878696
+ 13.4605969  12.74434495 13.2877085  10.99076261 15.28827428 18.64724892
+  9.0889902  16.10331959 14.34973724 15.95512954 18.15328206 14.39913393
+ 15.3623693  15.14008422  7.50829625  0.02469834  7.48359791  7.45889957
+  8.19984985  7.65648631  9.21248191  5.45833379  2.44513595  0.1728884
+ 20.84540144  9.41006866 13.85577039 12.22567975 10.86727089 18.20267874
+ 13.60878696 22.05562024 21.11708321 16.67138148 18.20267874 14.6708157
+ 13.26301016 15.93043119  6.74264762  9.33597363  1.5559956  10.22511397
+ 16.05392291  4.05052824  1.90177241  4.39630504  8.64442003  7.97756477
+  7.55769294  6.39687082  8.02696145 10.22511397  7.63178797  8.29864323
+ 12.44796484 16.7948732  16.67138148 17.11595165 17.88160028 16.52319142
+ 20.49962464 15.23887759 14.4979273  17.90629863 15.43646433  7.48359791
+ 10.32390735 17.8322036  15.60935273 17.8322036  17.51112514 20.89479812
+ 17.6593152  17.04185662 20.42552961 22.74717384 23.71040922 15.38706765
+ 15.04129085  3.08729287 10.59558912  7.55769294 15.26357593 10.76847752
+  8.3974366   9.58295706  9.50886203  7.13782111  7.06372608 11.28714272
+ 16.64668314  8.570325    6.00169733  4.39630504  9.31127529 15.41176599
+ 17.19004668 19.11651743 19.80807103 14.79430742 13.23831181 20.57371966
+ 21.95682687 21.43816167 16.17741462  8.00226311 12.20098141 12.05279135
+  0.09879337 13.83107204 11.06485763  5.03846196  9.92873386  8.34803991
+  8.54562666  5.45833379  9.68175043 19.11651743 13.01602673 13.4605969
+  8.59502334  9.53356037  8.15045317  8.44683328 14.34973724 17.98039366
+ 15.83163782 11.55882449  0.22228509  5.03846196  9.11368854 10.86727089
+  9.73114712 17.01715828 16.17741462 13.43589856 14.86840245 14.79430742
+  0.3457768  13.13951844 17.36293508 19.63518263 17.8322036  10.00282889
+ 13.68288199 15.43646433 18.1779804  17.26414171 16.00452622  0.27168177
+  1.90177241  9.16308523 12.12688638 17.01715828 14.69551405  5.77941225
+  0.24698343  3.55656138  6.54506088  8.99019683  6.94023436  8.94080014
+ 14.17684884 17.88160028  9.2618786   6.84144099 11.48472946  9.434767
+  6.79204431 10.62028746  9.38537031  0.22228509 10.6449858   9.36067197
+ 10.81787421 13.13951844  2.86500778  0.14819006  9.48416369  1.01263206
+  6.79204431  9.65705209  9.50886203  0.04939669  7.68118465 15.70814611
+ 14.10275382 18.869534   11.80580792  0.1728884   5.50773047 12.47266318
+ 13.04072507 18.10388537 16.10331959 14.52262565 13.01602673  8.0516598
+ 12.57145655  0.          9.18778357  9.63235374  7.50829625 11.73171289
+ 14.91779913 13.18891513  9.7805438   5.38423876  6.27337911  6.00169733
+  0.07409503  0.14819006  7.36010619 11.43533278 10.00282889 14.30034056
+ 13.2877085  16.69607982 19.51169092 19.61048429 12.54675821 13.50999358
+ 18.72134394 16.12801794 15.97982788  6.74264762 14.10275382 16.30090634
+ 14.17684884 10.22511397  8.24924654 11.31184106 13.31240684 11.78110958
+ 14.02865879  6.29807745  0.02469834  6.74264762  6.69325094  0.19758674
+  6.42156916  9.58295706 16.67138148 15.78224113 13.23831181 10.49679575
+ 24.47605785 23.73510756 24.20437608 24.42666116 22.50019041 15.46116268
+  5.55712716  6.1004907   4.09992493  5.0631603   7.95286642 10.71908083
+ 13.68288199  9.7805438  10.27451066  9.58295706  8.64442003  9.13838689
+ 13.48529524 13.26301016 11.21304769  0.24698343  8.42213494  6.39687082
+  7.33540785  8.10105648  6.34747413 13.43589856 15.51055936 12.52205987
+ 16.07862125 16.10331959  6.49566419  0.14819006  2.37104092  6.52036253
+  6.61915591  6.56975922 10.4720974  11.73171289 14.20154719  8.10105648
+ 12.5961549   7.53299459  4.66798681 20.42552961 19.14121577 13.13951844
+ 21.66044675 17.70871188  7.03902774 10.71908083 10.02752723 15.58465439
+ 16.35030302 21.01828984 23.09295064 21.75924012 23.63631419 16.15271628
+ 13.85577039  3.70475144  6.39687082  6.34747413  3.63065641  2.32164424
+  5.97699899  6.79204431  3.95173487  7.03902774  9.85463883 11.18834935
+ 14.44853062 13.36180353 20.99359149 13.95456376 16.10331959  0.76564863
+  0.39517349  7.48359791 16.12801794 13.26301016 20.79600475 22.69777716
+ 19.75867435 21.70984344 23.7598059  24.50075619 23.04355396 15.73284445
+ 16.59728645 19.85746772 15.3623693  13.55939027 10.86727089 12.00339467
+ 14.12745216 12.34917147 10.02752723 17.38763343 20.77130641 21.04298818
+ 10.00282889  7.06372608 10.81787421  7.38480454  7.65648631  6.74264762
+  7.43420122  6.49566419  0.56806189  6.05109402  9.38537031  8.9161018
+  7.23661448 14.91779913]
+2017-01-01 00:00:00 2019-01-01 00:00:00 2017-04-02 06:00:00 2018-10-01 18:00:00
