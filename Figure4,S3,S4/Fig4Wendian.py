@@ -43,6 +43,9 @@ else:
 win_ms = [250, 500, 750, 750,1000,1000, 1250, 1500]  # window length [m]
 overlap_ms = [0,250, 250, 375,250, 500,625,500]  # overlap [m]
 
+win_ms = [750,1000,1000, 1250, 1500]  # window length [m]
+overlap_ms = [375,250, 500,625,500]  # overlap [m]
+
 #win_ms = [750]  
 #overlap_ms = [250]
 
@@ -99,7 +102,6 @@ def compute_doppler_spectrum(radargram, start_x,end_x):
     data_fft = np.fft.fftshift(np.fft.fft(data_for_fft, axis=1), axes=1)
 
     dx = np.mean(np.diff(radargram['distance'].compute().values[start_x:end_x])) # m
-    print(f"In func dx = {dx} m")
     # Make frequency axis
     t = radargram['time'] 
     t_sec = (t - t[0]).astype('timedelta64[ns]').astype(np.float64) * 1e-9
@@ -108,7 +110,7 @@ def compute_doppler_spectrum(radargram, start_x,end_x):
     freq = np.fft.fftshift(
         np.fft.fftfreq(n_slow, d=dx)
     )
-    print(f"In funct freq = {freq[0]} to {freq[-1]} Hz")
+
     return freq, data_fft, start_y, end_y, x_center, y_center
 
 def calc_doppler_ridge(freq, data_fft, start_y, end_y, wgt, sato_th_off):
@@ -420,7 +422,6 @@ for win_m, ovlp_m in zip(win_ms, overlap_ms):
         met_y1 = test_rad['y'].sel(distance=start_x, method='nearest').values
         met_x2 = test_rad['x'].sel(distance=end_x, method='nearest').values
         met_y2 = test_rad['y'].sel(distance=end_x, method='nearest').values
-        print(met_x1, met_y1, met_x2, met_y2)
         ax.text(met_x1 -1500, met_y1 +500, f'{start_x} m', color='red', fontsize=14, transform=ps71_projection, zorder=6,ha='left')
         ax.text(met_x2 + 2000, met_y2 -1000, f'{end_x} m', color='red', fontsize=14, transform=ps71_projection, zorder=6,ha='right')
         ax.set_xlim(bbox[0],bbox[2])
@@ -797,7 +798,6 @@ for win_m, ovlp_m in zip(win_ms, overlap_ms):
         for x_center_list, y_center_list, plotting,velocity in zip(plot_dict['x_centers'], plot_dict['y_centers'], plot_dict['ridge_params_list'], velocities):
             width = [rp['right'] - rp['left'] for rp in plotting]
             scaled_width = [w * velocity for w in width]  # Scale by velocity to get doppler width
-            print(f"Scaled width: {scaled_width}")
             
             y_maxes = np.array([rp['y_at_max'] for rp in plotting])
             mask = y_maxes < 1250
@@ -1068,8 +1068,6 @@ for win_m, ovlp_m in zip(win_ms, overlap_ms):
         # Extend by the width of each ridge, scaled by velocity
         width_velocity_corrected.extend([abs(r['left'] - r['right']) * velocity[j] for j, r in enumerate(ridge_list)])
         #avg_velocity = np.mean(velocity)
-        print(f'Ridge list')
-        print(ridge_list)
         width.extend([abs(r['left'] - r['right'])*avg_velocity_1819 for r in ridge_list])
         line_id.extend([i]*n)
 
