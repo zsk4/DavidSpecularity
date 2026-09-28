@@ -17,7 +17,7 @@ If you need the processed Doppler width maps, they can be found directly at [Zen
 2. Clone the repository and use uv to sync the included python environment. Conda users can see the requirements in pyproject.toml.
 ```bash
 git clone git@github.com:zsk4/DavidSpecularity.git
-cd DavidSepcularity
+cd DavidSpecularity
 uv sync
 ```
 3. Make and move all data to a _Data folder in the repository if desired. When you run a figure plotting script, be sure the paths at the beginning match your data locations.
