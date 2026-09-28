@@ -800,7 +800,7 @@ for win_m, ovlp_m in zip(win_ms, overlap_ms):
             scaled_width = [w * velocity for w in width]  # Scale by velocity to get doppler width
             
             y_maxes = np.array([rp['y_at_max'] for rp in plotting])
-            mask = y_maxes < 1250
+            mask = y_maxes < 1250 # Mask likely poor picks at edge of transform
             scaled_width = np.array([sw.item() for sw in scaled_width])
             scaled_width[mask] = np.nan
             
