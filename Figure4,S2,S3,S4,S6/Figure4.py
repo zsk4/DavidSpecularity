@@ -1,35 +1,49 @@
-# 16 March 2025
 # Zachary Katz
 # zachary_katz@mines.edu
+# 26 October 2026
 
 """
-Doppler width plot (spatial freq corrected for helicopter velocity) and crossover
-analysis.
+HPC script to compute doppler spectra and widths for a range of overlaps and windows.
+Uses ProcessPoolExecutor to parallelize the computation over each overlap/window
 
+Change user-defined paths in this cell below to point to your downloaded datasets.
+
+Radar data from Zenodo 
+(https://doi.org/10.5281/zenodo.22982329)
+
+Altimetry-derived lake outlines from Zenodo 
+(https://doi.org/10.5281/zenodo.15758711)
+Subglacial Cheongsuk Lake Outline at output/lake_outlines/evolving_outlines/David_s1.geojson
+
+DDInSAR and Multivariate lake outlines from KPDC 
+(https://dx.doi.org/doi:10.22663/KOPRI-KPDC-00001177)
+DDInSAR outline from DDInSAR.zip
+Multivariate outline from SLD2_Boundary.zip
 """
 
 # Imports and options
 import os
-
+import skimage
 import shapefile
 import numpy as np
+import pandas as pd
 import xarray as xr
-import scipy
-import skimage
 
-import matplotlib.pyplot as plt
-from mpl_toolkits.axes_grid1.inset_locator import inset_axes
-from mpl_toolkits.axes_grid1.anchored_artists import AnchoredSizeBar
-import cartopy.crs as ccrs
-import matplotlib.patheffects as pe
+import scipy
 from scipy.spatial import cKDTree
-from scipy.optimize import curve_fit
+
 import geopandas as gpd
+import cartopy.crs as ccrs
+
+import matplotlib.cm as cm
+import matplotlib.pyplot as plt
 import matplotlib.colors as colors
 from matplotlib.lines import Line2D
-import matplotlib.cm as cm
+import matplotlib.patheffects as pe
+from mpl_toolkits.axes_grid1.inset_locator import inset_axes
+from mpl_toolkits.axes_grid1.anchored_artists import AnchoredSizeBar
+
 from concurrent.futures import ProcessPoolExecutor
-import pandas as pd
 
 ### CHECK AND EXIT IF NOT ON NODE ###
 if "SLURM_JOB_ID" not in os.environ:
@@ -39,25 +53,34 @@ else:
     print(f"Running Slurm Job ID: {os.environ['SLURM_JOB_ID']}")
 
 
-### MANUALLY SELECTED PARAMETERS ###
+################################################################################
+########################### USER-DEFINED PARAMETERS ############################
+
+# Edit these paths to match your data locations. Suggested paths for _Data folder
+# in the main DavidSpecularity repo based on default download names shown below. 
+
+# Radar Data Paths
+offset_video_path_1819 = '../_Data/1819_OffsetVideo'
+offset_video_path_1617 = '../_Data/1617_OffsetVideo'
+
+# DDInSAR 2, 2-1, and Multivariate Lake Outlines A,B,C Paths
+DDInSAR_path2 = '../_Data/David2.shp'
+DDInSAR_path2_1 = '../_Data/David2-1.shp'
+pathA = '../_Data/SLD2-A.shp'
+pathB = '../_Data/SLD2-B.shp'
+pathC = '../_Data/SLD2-C.shp'
+
+#Altimetry-Derived Lake Outlines Paths
+evolving_path = '../_Data/David_s1.geojson'
+
+# Select windows and overlap pairs and thresholds for filtering
 win_ms = [250, 500, 750, 750,1000,1000, 1250, 1500]  # window length [m]
 overlap_ms = [0,250, 250, 375,250, 500,625,500]  # overlap [m]
-
-win_ms = [750,1000,1000, 1250, 1500]  # window length [m]
-overlap_ms = [375,250, 500,625,500]  # overlap [m]
-
-#win_ms = [750]  
-#overlap_ms = [250]
-
 wgt = 8
 sato_thresh_offset = 0
 
-# Set paths and make output directory
-offset_video_path_1819 = '/home/m10921061/scratch/data/DavidSpecularityData/UTG_1819_OffsetVideo'
-offset_video_path_1617 = '/home/m10921061/scratch/data/DavidSpecularityData/UTG_1617_OffsetVideo'
-lake_path = '/home/m10921061/scratch/data/DavidSpecularityData/Ju_SLD2'
-evolving_path = '/home/m10921061/scratch/data/DavidSpecularityData/Sauthoff_EvolvingOutlines'
-DDInSAR_path = '/home/m10921061/scratch/data/DavidSpecularityData/Kim_DDInSAR'
+########################### USER-DEFINED PARAMETERS ############################
+################################################################################
 
 dist_1617 = []
 dist_1819 = []
@@ -458,10 +481,6 @@ for win_m, ovlp_m in zip(win_ms, overlap_ms):
         return x, y
 
     # Load Subglacial Lake Cheongsuk shapefile
-    pathA = lake_path + '/SLD2-A.shp'
-    pathB = lake_path + '/SLD2-B.shp'
-    pathC = lake_path + '/SLD2-C.shp'
-
     xs_lake = []
     ys_lake = []
     for path in [pathA, pathB, pathC]:
@@ -1452,11 +1471,8 @@ for win_m, ovlp_m in zip(win_ms, overlap_ms):
     evolving_outlines = gpd.read_file(f'{evolving_path}/David_s1.geojson')
 
     # Load DDInSAR outlines
-    path2 = f'{DDInSAR_path}/David2.shp'
-    path2_1 = f'{DDInSAR_path}/David2-1.shp'
-
     DDInSAR_outlines = []
-    for path in [path2, path2_1]:
+    for path in [DDInSAR_path2, DDInSAR_path2_1]:
         sf = shapefile.Reader(path)
         for shape in sf.shapes():
             points = shape.points
@@ -1828,8 +1844,6 @@ for win_m, ovlp_m in zip(win_ms, overlap_ms):
     crossovers_1819_df = pd.DataFrame({'x:': x_cross_1819, 'y': y_cross_1819, 'ridge_diff': ridge_diff_1819, 'ridge_diff_velocity_corrected': ridge_diff_velocity_corrected_1819})
     crossovers_1819_df.to_csv(os.path.join(outdir, 'crossovers_1819.csv'), index=False)
 
-
-
     ## Figure S3 ##
     def common_panel_elements_S3(ax, plot_dict, rad_vel):
         """
@@ -1946,77 +1960,3 @@ for win_m, ovlp_m in zip(win_ms, overlap_ms):
     cbar.ax.xaxis.set_label_position('top')
 
     cbar.ax.minorticks_on()
-
-
-
-
-
-    """
-    # Histograms
-    # Combine data to get common bins
-    all_data = np.concatenate([ridge_diff_velocity_corrected_1617, ridge_diff_1617])
-    bins = np.linspace(all_data.min(), all_data.max(), 20) 
-
-    ax3.hist(ridge_diff_velocity_corrected_1617, bins=bins, color='purple',alpha=0.7, edgecolor='black')
-    ax3.hist(ridge_diff_1617, bins=bins, color='orange',alpha=0.7, edgecolor='black')
-    # Boxplot
-    #ax.boxplot(abs_ridge_diff, vert=False, patch_artist=True, boxprops=dict(facecolor='purple', color='black'), medianprops=dict(color='yellow'))
-    ax3.set_xlabel('Abs Crossover Difference [Hz]', fontsize=16)
-    ax3.set_ylabel('Count', fontsize=16)
-    ax3.tick_params(labelsize=14)
-    ax3.text(0.95, 0.6, f'2016-2017', transform=ax3.transAxes, fontsize=14, verticalalignment='top', horizontalalignment='right')
-
-    ax3.legend(['Point-Velocity', 'Average Velocity'], fontsize=14, loc='upper right', frameon=False)
-
-
-    # Combine data to get common bins
-    all_data = np.concatenate([ridge_diff_velocity_corrected_1819, ridge_diff_1819])
-    bins = np.linspace(all_data.min(), all_data.max(), 26) 
-
-    ax4.hist(ridge_diff_velocity_corrected_1819, bins=bins, color='purple',alpha=0.7, edgecolor='black')
-    ax4.hist(ridge_diff_1819, bins=bins, color='orange',alpha=0.7, edgecolor='black')
-    # Boxplot
-    #ax.boxplot(abs_ridge_diff, vert=False, patch_artist=True, boxprops=dict(facecolor='purple', color='black'), medianprops=dict(color='yellow'))
-    ax4.set_xlabel('Abs Crossover Difference [Hz]', fontsize=16)
-    ax4.set_ylabel('Count', fontsize=16)
-    ax4.tick_params(labelsize=14)
-    ax4.text(0.95, 0.6, f'2018-2019', transform=ax4.transAxes, fontsize=14, verticalalignment='top', horizontalalignment='right')
-
-    ax4.legend(['Point-Velocity', 'Average Velocity'], fontsize=14, loc='upper right', frameon=False)
-
-    fig.savefig(os.path.join(outdir, f'FigureS3_wgt{wgt}_sato{sato_thresh_offset}.png'), dpi=300, bbox_inches='tight')
-
-
-    # Get 1617 and 1819 distributions
-    dist_1617.append(scaled_width_1617)
-    dist_1819.append(scaled_width_1819)
-
-
-# Boxplot of value distributions for given window and overlap paramaters
-print(dist_1617)
-print(dist_1819)
-
-# Save distributions as csv
-dist_1617_df = pd.DataFrame(dist_1617, columns=['Doppler Width [Hz]'])
-dist_1819_df = pd.DataFrame(dist_1819, columns=['Doppler Width [Hz]'])
-dist_1617_df.to_csv(os.path.join(outdir, 'dist_1617.csv'), index=False)
-dist_1819_df.to_csv(os.path.join(outdir, 'dist_1819.csv'), index=False)
-
-for i, win_m, ovlp_m in enumerate(zip(win_ms, overlap_ms)):
-    fig, ax1, ax2 = plt.subplots(2, 1, figsize=(12,6))
-    # Combine data to get common bins
-    data_1617 = np.array(dist_1617[i].ravel)
-    data_1819 = np.array(dist_1819[i].ravel)
-    print(data_1617)
-    print(data_1819)
-    all_data = np.concatenate([data_1617, data_1819])
-    bins = np.linspace(all_data.min(), all_data.max(), 100)
-    labels = [f'{win_m} m, {ovlp_m} m' for win_m, ovlp_m in zip(win_ms, overlap_ms)]
-    ax1.boxplot(dist_1617, vert=False, patch_artist=True, boxprops=dict(facecolor='purple', color='black'), medianprops=dict(color='yellow'), positions=[0], widths=0.6)
-    ax2.boxplot(dist_1819, vert=False, patch_artist=True, boxprops=dict(facecolor='purple', color='black'), medianprops=dict(color='yellow'), positions=[0], widths=0.6)
-    ax1.set_yticks([0])
-    ax1.set_yticklabels([f'2016-2017\n{labels[0]}'], fontsize=14)
-    ax2.set_yticks([0])
-    ax2.set_yticklabels([f'2018-2019\n{labels[0]}'], fontsize=14)
-    ax1.set_xlabel('Doppler Width [Hz]', fontsize=16)
-"""
