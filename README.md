@@ -1,4 +1,4 @@
-# DavidSpecularity
+# DavidSpecularity [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23673022.svg)](https://doi.org/10.5281/zenodo.23673022)
 Code used to process radar data and create figures in:
 >Katz, Z., Ju, H., Young, D., Lee, J., Hills, B., Kang, S., & Siegfried, M. "Mapping David Glacier Subglacial Water Routing with Airborne Ice-Penetrating Radar Doppler Spectra Width," currently in preperation.
 
